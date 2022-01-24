@@ -1,8 +1,8 @@
 import {saveItem} from "./version";
 import {bellRoutines} from "./assets/defaultBells";
 
-const siteURL = encodeURIComponent('https://genericbells.pages.dev');
-const useAppId = "genericbells10";
+const siteURL = encodeURIComponent('https://genericbellstesting3.pages.dev');
+const useAppId = "genericbellstesting3";
 
 
 export function getWeekNum(date, mode='millis') {
@@ -193,7 +193,7 @@ export async function fetchData(ask, src = 'sch', auth=true) {
         }
     }
     if (src === "sch") {
-        requestUrl = "https://forward.genericbells.workers.dev/?ask=" + ask;
+        requestUrl = "https://forward2.genericbells.workers.dev/?ask=" + ask;
     }
     else if (src === "data") {
         requestUrl = "https://data.genericbells.workers.dev/?ask=" + ask;
