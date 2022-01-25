@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import ClassInfo from "../components/ClassInfo";
 import {passStr, saveStr, passItem, saveItem} from "../version";
 import { ReactComponent as Logo } from "../assets/favicon3.svg";
+import * as serviceWorkerRegistration from "../serviceWorkerRegistration";
 
 
 export default function PageSettings(props) {
@@ -36,6 +37,7 @@ export default function PageSettings(props) {
     function logout(e) {
         localStorage.clear();
         sessionStorage.clear();
+        serviceWorkerRegistration.unregister();
         window.location.reload();
     }
 
@@ -84,11 +86,10 @@ export default function PageSettings(props) {
         <div className="page__settings page__prop">
             <h1>Settings</h1>
             <div className="group" id="banner">
-                {/*<img className="banner__image" width="100px" src={logo} alt="logo" />*/}
                 <Logo style={{width: '100px'}} />
             </div>
             <div className="group">
-                <h2 className="settings">Change colours & names</h2>
+                <h2 className="settings">Customise colours & names</h2>
                 <p className="settings">
                     Choose a colour for each subject. Long names are used on the daily
                     timetable. Short names are used on the full timetable (max. 4 letters).
@@ -150,7 +151,7 @@ export default function PageSettings(props) {
                     onClick={() => handleFeedsToggle(!feedsExpanded)}
                 >
                     <h2 className="feedItem__title">Click me</h2>
-                    <div className="feedItem__metadataRow settings">
+                    <div className="feedItem__metadataRow settings" style={{backgroundColor: '#d0d0d0'}}>
                         <div className="feedItem__meetingTag">
                             <div className="feedItem__metadata feedItem__metadata__meeting">Meeting: </div>
                             <h6 className="feedItem__metadata feedItem__metadata__meeting settings">Time</h6>
@@ -189,20 +190,30 @@ export default function PageSettings(props) {
             </div>
             <div className="group">
                 <h2 className="settings">Help</h2>
-                <h6 className="settings">Show teacher name & classes</h6>
-                <p className="settings">Click on each period on the home page to see details.</p>
+                <h6 className="settings">Show teacher name for periods</h6>
+                <p className="settings">Click on each period on the main page to see details.</p>
+                <h6 className="settings">Site not working?</h6>
+                <p className="settings">Try pressing the logout button above. Then, close and reopen the browser window.</p>
+                <h6 className="settings">Contact</h6>
+                <p className="settings">Google forms: <a href="https://forms.gle/me4tVTEv1ect7Lhn9">https://forms.gle/me4tVTEv1ect7Lhn9</a></p>
+                <p className="settings">
+                    note: Major new features are unlikely to be added to the app because I don't have much free time.
+                    Optimisation suggestions on the existing UI will be considered on the basis of their ability to
+                    improve the user experience for a majority of users.
+                </p>
 
             </div>
             <div className="group">
                 <h2 className="settings">About Generic Bells</h2>
-                <p className="settings">This app aims to show your timetable in a concise, friendly and reliable way.</p>
+                <p className="settings">A colourful, customisable & concise app to show your SBHS timetable data.</p>
                 <p className="settings">Source code can be found on Github here.</p>
                 <p className="settings"><a href="https://github.com/mintcarrotkeys/generic-bells">mintcarrotkeys/generic-bells</a></p>
                 <p className="settings"><br /></p>
-                <h4 className="settings">version 1.2.1</h4>
+                <h4 className="settings">version 1.3.1</h4>
                 <p className="settings">
                     This is a beta release, meaning the software will have bugs and unforeseen problems.
                     Use at your own risk. Don't enter any sensitive or important data into the app.
+                    Your school API data is stored locally on your device only.
                 </p>
                 <h6 className="settings">
                     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
@@ -213,16 +224,16 @@ export default function PageSettings(props) {
                     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                 </h6>
             </div>
-            <div className="group">
-                <h1 className="settings">Sample text</h1>
-                <h2 className="settings">Heading 2</h2>
-                <h3 className="settings">Heading 3</h3>
-                <h4 className="settings">Heading 4</h4>
-                <h5 className="settings">Heading 5</h5>
-                <h6 className="settings">Heading 6</h6>
-                <p className="settings">Body text</p>
+            {/*<div className="group">*/}
+            {/*    <h1 className="settings">Sample text</h1>*/}
+            {/*    <h2 className="settings">Heading 2</h2>*/}
+            {/*    <h3 className="settings">Heading 3</h3>*/}
+            {/*    <h4 className="settings">Heading 4</h4>*/}
+            {/*    <h5 className="settings">Heading 5</h5>*/}
+            {/*    <h6 className="settings">Heading 6</h6>*/}
+            {/*    <p className="settings">Body text</p>*/}
 
-            </div>
+            {/*</div>*/}
         </div>
     );
 
