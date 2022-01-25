@@ -3,6 +3,7 @@ import {bellRoutines} from "./assets/defaultBells";
 
 const siteURL = encodeURIComponent('https://genericbellstesting3.pages.dev');
 const useAppId = "genericbellstesting3";
+const serverURL = "https://forward2.genericbells.workers.dev/";
 
 
 export function getWeekNum(date, mode='millis') {
@@ -193,10 +194,7 @@ export async function fetchData(ask, src = 'sch', auth=true) {
         }
     }
     if (src === "sch") {
-        requestUrl = "https://forward2.genericbells.workers.dev/?ask=" + ask;
-    }
-    else if (src === "data") {
-        requestUrl = "https://data.genericbells.workers.dev/?ask=" + ask;
+        requestUrl = serverURL + "?ask=" + ask;
     }
     let res = false;
     await fetch(requestUrl, {headers: new Headers({'Authorization': token})}).then(r => res=r).catch(e => console.log(e));
