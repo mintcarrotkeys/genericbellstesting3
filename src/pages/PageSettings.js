@@ -193,7 +193,7 @@ export default function PageSettings(props) {
                 <p className="settings">Click on each period on the main page to see details.</p>
                 <h6 className="settings">Site not working?</h6>
                 <p className="settings">Close all browser tabs and try again.</p>
-                <p className="settings">Then, try</p>
+                <p className="settings">Then, try removing site data for this site in your browser settings.</p>
                 <h6 className="settings">Contact</h6>
                 <p className="settings">Google forms: <a href="https://forms.gle/me4tVTEv1ect7Lhn9">https://forms.gle/me4tVTEv1ect7Lhn9</a></p>
 
