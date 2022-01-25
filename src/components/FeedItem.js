@@ -46,7 +46,7 @@ export default function FeedItem(props) {
         }
     }
 
-    message.content.replaceAll("<br>", "\n");
+    message.content = message.content.replaceAll("<br>", "\n");
 
     const output = (
         <div
