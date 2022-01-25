@@ -179,10 +179,10 @@ p {
     /*justify-content: start;*/
 }
 
-/*noinspection ALL,CssRedundantUnit*/
+
 .page__prop {
-    /*animation-duration: 0s;*/
-    /*animation-name: pageFade;*/
+    animation-duration: 0.2s;
+    animation-name: pageFade;
     width: calc(100vw - 30px);
     min-width: 250px;
     max-width: 600px;
