@@ -37,7 +37,6 @@ export default function PageSettings(props) {
     function logout(e) {
         localStorage.clear();
         sessionStorage.clear();
-        serviceWorkerRegistration.unregister();
         window.location.reload();
     }
 
@@ -151,8 +150,8 @@ export default function PageSettings(props) {
                     onClick={() => handleFeedsToggle(!feedsExpanded)}
                 >
                     <h2 className="feedItem__title">Click me</h2>
-                    <div className="feedItem__metadataRow settings" style={{backgroundColor: '#d0d0d0'}}>
-                        <div className="feedItem__meetingTag">
+                    <div className="feedItem__metadataRow settings" >
+                        <div className="feedItem__meetingTag" style={{backgroundColor: '#d0d0d0'}}>
                             <div className="feedItem__metadata feedItem__metadata__meeting">Meeting: </div>
                             <h6 className="feedItem__metadata feedItem__metadata__meeting settings">Time</h6>
                             <h6 className="feedItem__metadata feedItem__metadata__meeting settings">Location</h6>
@@ -193,14 +192,10 @@ export default function PageSettings(props) {
                 <h6 className="settings">Show teacher name for periods</h6>
                 <p className="settings">Click on each period on the main page to see details.</p>
                 <h6 className="settings">Site not working?</h6>
-                <p className="settings">Try pressing the logout button above. Then, close and reopen the browser window.</p>
+                <p className="settings">Close all browser tabs and try again.</p>
+                <p className="settings">Then, try</p>
                 <h6 className="settings">Contact</h6>
                 <p className="settings">Google forms: <a href="https://forms.gle/me4tVTEv1ect7Lhn9">https://forms.gle/me4tVTEv1ect7Lhn9</a></p>
-                <p className="settings">
-                    note: Major new features are unlikely to be added to the app because I don't have much free time.
-                    Optimisation suggestions on the existing UI will be considered on the basis of their ability to
-                    improve the user experience for a majority of users.
-                </p>
 
             </div>
             <div className="group">
