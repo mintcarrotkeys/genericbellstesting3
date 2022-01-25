@@ -46,6 +46,10 @@ export default function FeedItem(props) {
         }
     }
 
+    console.log(message.content);
+    console.log(message);
+
+
     const output = (
         <div
             className="feedItem"
