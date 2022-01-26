@@ -30,10 +30,11 @@ function App() {
         let storedData = passItem('storedData');
         if (storedData !== null) {
             if (Date.now() <= Number(storedData.timestamp)) {
+                console.log("Stored data still valid");
                 output = storedData;
             }
             else if (storedData.tt.hasOwnProperty('subjects')) {
-                output = {...storedData, ...{dtt: {}, feeds: {}, dataState: ""}};
+                output = {...storedData, ...{dtt: {}, feeds: {}, dataState: "askToLogin"}};
             }
         }
         return output;
@@ -44,7 +45,7 @@ function App() {
     let pageBells;
     let pageBarcode = (<PageBarcode userIdCode={data.userId} />);
     let pageTimetable = (<PageTimetable data={data.tt} sync={data.sync} />);
-    let pageFeeds = (<PageFeeds data={data.feeds} dataState={data.dataState} isOffline={(data.dataState==="offline")} />);
+    let pageFeeds = (<PageFeeds data={data.feeds} isOffline={(data.dataState==="offline")} />);
     let pageSettings = (<PageSettings />);
 
     if (passStr('usedApp') === null) {
@@ -71,6 +72,9 @@ function App() {
                 .then(res => newDataInput=res)
                 .then(() => (newDataInput.hasOwnProperty("dataState") ? newData=newDataInput : doNothing=false))
                 .catch((err) => console.log(err));
+            console.log(data);
+            console.log(newData);
+            console.log(newDataInput);
 
             function synthDTT() {
                 let output = {
@@ -84,9 +88,15 @@ function App() {
                     timetable: {},
                 }
 
-                const today = new Date();
+                let today = new Date();
                 let showDay;
                 let dayDiff;
+                if (today.getHours() >= 16) {
+                    let millisInDay = 86400000;
+                    let timeNow = today.getTime();
+                    today = new Date((Math.floor(timeNow / millisInDay) * millisInDay) + millisInDay + 10000);
+                    console.log("detected afternoon");
+                }
                 if (today.getDay() === 6) {
                     showDay = today.getTime() + 2*24*60*60*1000;
                     dayDiff = 1;
@@ -95,17 +105,17 @@ function App() {
                     showDay = today.getTime() + 24*60*60*1000;
                     dayDiff = 1;
                 }
-                else if (today.getHours() >= 16) {
-                    let millisInDay = 86400000;
-                    showDay = (Math.floor(today.getTime() / millisInDay) * millisInDay) + millisInDay + 10000;
-                }
                 else {
                     showDay = today.getTime();
                     dayDiff = today.getDay();
                 }
+                console.log(showDay);
 
                 let weekNo = getWeekNum(showDay);
                 let sync = newData.sync;
+                if (sync === null || !sync.hasOwnProperty("weekNo")) {
+                    return false;
+                }
                 let weekDiff;
                 if (weekNo < sync.weekNo) {
                     weekDiff = sync.weekNo;
@@ -155,7 +165,7 @@ function App() {
                     console.log("Error when generating synthetic day timetable.");
                 }
 
-                // console.log(output);
+                console.log(output);
 
                 return output;
 

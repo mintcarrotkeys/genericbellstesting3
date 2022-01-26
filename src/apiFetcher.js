@@ -213,7 +213,6 @@ export async function stateManager() {
         return "offline";
     }
 
-    let response;
     if (params.has('code')) {
         localStorage.removeItem("just_redirected");
         let response = false;
