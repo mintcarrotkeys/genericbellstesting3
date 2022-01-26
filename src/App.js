@@ -33,7 +33,7 @@ function App() {
                 output = storedData;
             }
             else if (storedData.tt.hasOwnProperty('subjects')) {
-                output = {...storedData, ...{dtt: {}, feeds: {}}};
+                output = {...storedData, ...{dtt: {}, feeds: {}, dataState: ""}};
             }
         }
         return output;
@@ -92,10 +92,16 @@ function App() {
 
                 let weekNo = getWeekNum(showDay);
                 let sync = newData.sync;
-                let weekDiff = ((weekNo - sync.weekNo) + sync.weekDiff) % 3;
+                let weekDiff;
+                if (weekNo < sync.weekNo) {
+                    weekDiff = sync.weekNo;
+                }
+                else {
+                    weekDiff = ((weekNo - sync.weekNo) + sync.weekDiff) % 3;
+                }
 
                 //could be object as normal or array when there are period 0s.
-                let fetchedTimetable = newData.tt.days[(dayDiff + 5*weekDiff).toString()];
+                let fetchedTimetable = newData.tt['days'][(dayDiff + 5*weekDiff).toString()];
                 if (Array.isArray(fetchedTimetable)) {
                     let i = 0;
                     while (i < fetchedTimetable.length) {
@@ -132,12 +138,10 @@ function App() {
                     output.bells = [...bellRoutines.Fri];
                 }
                 else {
-                    console.log("dayDiff not in range 1-5 when generating synthetic day timetable.");
+                    console.log("Error when generating synthetic day timetable.");
                 }
 
-                output.bells = [...output.bells];
-
-                // console.log(output);
+                console.log(output);
 
                 return output;
 

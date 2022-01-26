@@ -1182,7 +1182,6 @@ p {
 .feedItem__body {
     margin: 5px 10px 4px 10px;
     white-space: pre-wrap;
-    transition: max-height;
 }
 
 
