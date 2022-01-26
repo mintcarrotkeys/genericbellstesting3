@@ -4,6 +4,7 @@ import {bellRoutines} from "./assets/defaultBells";
 const siteURL = encodeURIComponent('https://genericbellstesting3.pages.dev');
 const useAppId = "genericbellstesting3";
 const serverURL = "https://forward2.genericbells.workers.dev/";
+const tokenServerURL = "https://refresh2.genericbells.workers.dev"
 const refreshValidity = 90 * 24 * 60 * 60 * 1000 - 10000;
 const tokenValidity = 1 * 60 * 1000 - 10000;
 
@@ -52,25 +53,25 @@ export async function requestRefreshToken() {
         return false;
     }
     if (Date.now() < (timestamp + refreshValidity)) {
-        const requestBody = (
-            "grant_type=refresh_token" +
-            "&client_id=" + useAppId +
-            "&refresh_token=" + refresh
-        );
+        const requestBody = {
+            'grant_type': 'refresh_token',
+            'client_id': useAppId,
+            'refresh_token': refresh
+        };
 
         const requestURL = (
-            "https://student.sbhs.net.au/api/token"
+            tokenServerURL
         );
 
         let response = await fetch(requestURL, {
             method: "POST",
-            headers: {"Content-type": "application/x-www-form-urlencoded; charset=UTF-8"},
+            headers: {"Content-type": "application/json; charset=UTF-8"},
             body: requestBody});
         if (!response.ok) {
             console.log("Error refreshing tokens. -1");
             response = await fetch(requestURL, {
                 method: "POST",
-                headers: {"Content-type": "application/x-www-form-urlencoded; charset=UTF-8"},
+                headers: {"Content-type": "application/json; charset=UTF-8"},
                 body: requestBody});
             if (!response.ok) {
                 console.log('Error refreshing tokens. -2');
