@@ -1,12 +1,10 @@
-import {saveItem} from "./version";
-import {bellRoutines} from "./assets/defaultBells";
 
 const siteURL = encodeURIComponent('https://genericbellstesting3.pages.dev');
 const useAppId = "genericbellstesting3";
 const serverURL = "https://forward2.genericbells.workers.dev/";
 const tokenServerURL = "https://refresh2.genericbells.workers.dev"
 const refreshValidity = 90 * 24 * 60 * 60 * 1000 - 10000;
-const tokenValidity = 1 * 60 * 1000 - 10000;
+const tokenValidity = 60 * 60 * 1000 - 10000;
 
 
 export function getWeekNum(date, mode='millis') {
@@ -79,7 +77,7 @@ export async function requestRefreshToken() {
             }
         }
         const tokens = await response.json();
-        console.log(tokens);
+        // console.log(tokens);
         localStorage.setItem('handle_access', tokens['access_token']);
         localStorage.setItem('access_timestamp', Date.now().toString());
 
@@ -95,6 +93,8 @@ export async function requestToken() {
     const appId = useAppId;
     localStorage.removeItem('access_timestamp');
     localStorage.removeItem('handle_access');
+    localStorage.removeItem('refresh_timestamp');
+    localStorage.removeItem('handle_refresh');
     const codeVerifier = localStorage.getItem('handle_verifier');
     const state = localStorage.getItem('handle_state');
     if (codeVerifier == null) {
@@ -137,7 +137,7 @@ export async function requestToken() {
         }
     }
     const tokens = await response.json();
-    console.log(tokens);
+    // console.log(tokens);
     localStorage.setItem('handle_access', tokens['access_token']);
     localStorage.setItem('access_timestamp', Date.now().toString());
     localStorage.setItem('handle_refresh', tokens['refresh_token']);

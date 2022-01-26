@@ -147,7 +147,7 @@ function App() {
                     console.log("Error when generating synthetic day timetable.");
                 }
 
-                console.log(output);
+                // console.log(output);
 
                 return output;
 
