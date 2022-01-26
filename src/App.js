@@ -152,7 +152,7 @@ function App() {
                 return output;
 
             }
-
+            saveItem('storedData', newData);
             if (newData.dtt.hasOwnProperty('timetable')===false && newData.tt.hasOwnProperty('subjects')) {
                 const synth = synthDTT();
                 if (synth) {
@@ -163,7 +163,6 @@ function App() {
                     console.log("Failed to generate day schedule from timetable.");
                 }
             }
-            saveItem('storedData', newData);
             setData(newData);
             setCurrentPage(
                 <PageBells
