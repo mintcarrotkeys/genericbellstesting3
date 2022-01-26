@@ -65,7 +65,12 @@ function App() {
     React.useEffect(() => {
         async function dataManager() {
             let newData = {};
-            await getData().then(res => newData = res).catch((err) => console.log(err));
+            let newDataInput = {};
+            let doNothing;
+            await getData()
+                .then(res => newDataInput=res)
+                .then(() => (newDataInput.hasOwnProperty("dataState") ? newData=newDataInput : doNothing=false))
+                .catch((err) => console.log(err));
 
             function synthDTT() {
                 let output = {
