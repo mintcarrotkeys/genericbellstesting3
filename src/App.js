@@ -126,7 +126,7 @@ function App() {
                 }
 
                 //could be object as normal or array when there are period 0s.
-                let fetchedTimetable = newData.tt['days'][(dayDiff + 5*weekDiff).toString()];
+                let fetchedTimetable = displayData.tt['days'][(dayDiff + 5*weekDiff).toString()];
                 if (Array.isArray(fetchedTimetable)) {
                     let i = 0;
                     while (i < fetchedTimetable.length) {
@@ -138,7 +138,7 @@ function App() {
                     output.timetable.timetable = fetchedTimetable;
                 }
 
-                output.timetable.subjects = newData.tt.subjects;
+                output.timetable.subjects = displayData.tt.subjects;
 
                 let weekdays = ["", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
                 let weeks = ["A", "B", "C"];
