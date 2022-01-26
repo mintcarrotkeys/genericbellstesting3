@@ -110,10 +110,11 @@ function App() {
                     dayDiff = today.getDay();
                 }
                 console.log(showDay);
+                console.log(displayData);
 
                 let weekNo = getWeekNum(showDay);
-                let sync = newData.sync;
-                if (sync === null || !sync.hasOwnProperty("weekNo")) {
+                let sync = displayData.sync;
+                if (sync === null || sync === undefined) {
                     return false;
                 }
                 let weekDiff;
