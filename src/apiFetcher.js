@@ -300,8 +300,6 @@ export async function getData() {
         let checkAllGood = true;
         const source = "sch";
         await Promise.all([
-            fetchData('idn', source).then(res => userId = res.studentId)
-                .then(() => userId ? data.userId=userId : checkAllGood=false),
             fetchData('dtt', source).then(res => dtt = res)
                 .then(() => dtt ? data.dtt=dtt : checkAllGood=false),
             fetchData('tt', source).then(res => tt = res)
@@ -309,7 +307,9 @@ export async function getData() {
             fetchData('note', source).then(res => note = res)
                 .then(() => note ? data.feeds=note : checkAllGood=false),
             fetchData('wk', source).then(res => weekData=res)
-                .then(() => weekData ? data.dayName=(weekData.day + " " + weekData.week + weekData.weekType) : checkAllGood=false)
+                .then(() => weekData ? data.dayName=(weekData.day + " " + weekData.week + weekData.weekType) : checkAllGood=false),
+            fetchData('idn', source).then(res => userId = res.studentId)
+                .then(() => userId ? data.userId=userId : checkAllGood=false)
         ]).catch(e => console.log(e));
 
         if (weekData) {
@@ -330,7 +330,7 @@ export async function getData() {
 
         if (checkAllGood) {
             let timestamp = dtt.date.split("-");
-            let timestamp2 = new Date(Number(timestamp[0]), Number(timestamp[1]), Number(timestamp[2]), 23, 59, 59);
+            let timestamp2 = new Date(Number(timestamp[0]), Number(timestamp[1]) - 1, Number(timestamp[2]), 23, 59, 59);
             data.timestamp = timestamp2.getTime().toString();
         }
         else {

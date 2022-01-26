@@ -250,7 +250,7 @@ export default function PageSettings(props) {
                     See source code on Github for more details. (link above)
                     <br /><br />
                     <b>
-                        The Generic Bells logo, used within the app and as a favicon, is:<br />
+                        The Generic Bells logo, which is used within the app and as a favicon, is:<br />
                         Copyright (c) 2022 mintcarrotkeys All rights reserved.
                     </b>
                     <br />
