@@ -90,6 +90,10 @@ function App() {
                     showDay = today.getTime() + 24*60*60*1000;
                     dayDiff = 1;
                 }
+                else if (today.getHours() >= 16) {
+                    let millisInDay = 86400000;
+                    showDay = (Math.floor(today.getTime() / millisInDay) * millisInDay) + millisInDay + 10000;
+                }
                 else {
                     showDay = today.getTime();
                     dayDiff = today.getDay();

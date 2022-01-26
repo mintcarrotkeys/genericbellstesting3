@@ -330,7 +330,7 @@ export async function getData() {
 
         if (checkAllGood) {
             let timestamp = dtt.date.split("-");
-            let timestamp2 = new Date(Number(timestamp[0]), Number(timestamp[1]) - 1, Number(timestamp[2]), 23, 59, 59);
+            let timestamp2 = new Date(Number(timestamp[0]), Number(timestamp[1]) - 1, Number(timestamp[2]), 16, 0, 0);
             data.timestamp = timestamp2.getTime().toString();
         }
         else {
