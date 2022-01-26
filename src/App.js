@@ -51,7 +51,13 @@ function App() {
         pageBells = (<About />);
     }
     else {
-        pageBells = (<PageBells dayName={data.dayName} data={data.dtt} defaultBells={data.bells} />);
+        pageBells = (
+            <PageBells
+                dayName={data.dayName}
+                data={data.dtt}
+                defaultBells={data.bells}
+                isOffline={(data.dataState==="offline")}
+            />);
     }
 
     const [currentPage, setCurrentPage] = useState(pageBells);
@@ -159,7 +165,13 @@ function App() {
             }
             saveItem('storedData', newData);
             setData(newData);
-            setCurrentPage(<PageBells dayName={newData.dayName} data={newData.dtt} defaultBells={newData.bells} />);
+            setCurrentPage(
+                <PageBells
+                    dayName={newData.dayName}
+                    data={newData.dtt}
+                    defaultBells={newData.bells}
+                    isOffline={(newData.dataState==="offline")}
+                />);
 
         }
         if (passStr("usedApp") === null) {

@@ -54,7 +54,6 @@ export async function requestRefreshToken() {
     if (Date.now() < (timestamp + refreshValidity)) {
         const requestBody = (
             "grant_type=refresh_token" +
-            "&redirect_uri=" + siteURL +
             "&client_id=" + useAppId +
             "&refresh_token=" + refresh
         );

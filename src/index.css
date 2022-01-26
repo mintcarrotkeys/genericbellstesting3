@@ -1288,3 +1288,15 @@ p {
 b {
     font-weight: 500;
 }
+
+.noConnectionIcon {
+    width: 20px;
+    height: 20px;
+    flex: 0 1 20px;
+    padding-right: 5px;
+}
+
+.noConnection {
+    display: flex;
+    flex-wrap: nowrap;
+}
