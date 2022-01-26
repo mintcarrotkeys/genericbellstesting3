@@ -66,13 +66,13 @@ export async function requestRefreshToken() {
         let response = await fetch(requestURL, {
             method: "POST",
             headers: {"Content-type": "application/json; charset=UTF-8"},
-            body: requestBody});
+            body: JSON.stringify(requestBody)});
         if (!response.ok) {
             console.log("Error refreshing tokens. -1");
             response = await fetch(requestURL, {
                 method: "POST",
                 headers: {"Content-type": "application/json; charset=UTF-8"},
-                body: requestBody});
+                body: JSON.stringify(requestBody)});
             if (!response.ok) {
                 console.log('Error refreshing tokens. -2');
                 return false;
