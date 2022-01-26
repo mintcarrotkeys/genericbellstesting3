@@ -64,13 +64,13 @@ export async function requestRefreshToken() {
         let response = await fetch(requestURL, {
             method: "POST",
             headers: {"Content-type": "application/json; charset=UTF-8"},
-            body: JSON.stringify(requestBody)});
+            body: JSON.stringify(requestBody)}).catch(e => console.log(e));
         if (!response.ok) {
             console.log("Error refreshing tokens. -1");
             response = await fetch(requestURL, {
                 method: "POST",
                 headers: {"Content-type": "application/json; charset=UTF-8"},
-                body: JSON.stringify(requestBody)});
+                body: JSON.stringify(requestBody)}).catch(e => console.log(e));
             if (!response.ok) {
                 console.log('Error refreshing tokens. -2');
                 return false;
@@ -124,24 +124,26 @@ export async function requestToken() {
     let response = await fetch(requestURL, {
         method: "POST",
         headers: {"Content-type": "application/x-www-form-urlencoded; charset=UTF-8"},
-        body: requestBody});
+        body: requestBody}).catch(e => console.log(e));
     if (!response.ok) {
         console.log("Error fetching tokens. -1");
         response = await fetch(requestURL, {
             method: "POST",
             headers: {"Content-type": "application/x-www-form-urlencoded; charset=UTF-8"},
-            body: requestBody});
+            body: requestBody}).catch(e => console.log(e));
         if (!response.ok) {
             console.log('Error fetching tokens. -2');
             return false;
         }
     }
-    const tokens = await response.json();
+    let tokens = await response.json();
     // console.log(tokens);
-    localStorage.setItem('handle_access', tokens['access_token']);
-    localStorage.setItem('access_timestamp', Date.now().toString());
-    localStorage.setItem('handle_refresh', tokens['refresh_token']);
-    localStorage.setItem('refresh_timestamp', Date.now().toString());
+    if (tokens) {
+        localStorage.setItem('handle_access', tokens['access_token']);
+        localStorage.setItem('access_timestamp', Date.now().toString());
+        localStorage.setItem('handle_refresh', tokens['refresh_token']);
+        localStorage.setItem('refresh_timestamp', Date.now().toString());
+    }
 
     return true;
 }
@@ -164,7 +166,8 @@ export async function requestCode() {
     async function digestMessage(message) {
         const encoder = new TextEncoder();
         const data = encoder.encode(message);
-        const hash = await crypto.subtle.digest('SHA-256', data);
+        let hash;
+        await crypto.subtle.digest('SHA-256', data).then(res => hash=res).catch(e => console.log(e));
         return hash;
     }
     function base64url(input) {
@@ -213,12 +216,13 @@ export async function stateManager() {
     let response;
     if (params.has('code')) {
         localStorage.removeItem("just_redirected");
-        response = await requestToken();
-        if (response === false) {
-            return "askToLogin";
+        let response = false;
+        await requestToken().then(res => response=res).catch(e => console.log(e));
+        if (response === true) {
+            return "success";
         }
         else {
-            return "success";
+            return "askToLogin";
         }
     }
     else if (accessTokenTime !== null && (Date.now() <= (Number(accessTokenTime) + tokenValidity))) {
@@ -232,14 +236,14 @@ export async function stateManager() {
     }
     else if (refreshTokenTime !== null && (Date.now() <= (Number(refreshTokenTime) + refreshValidity))) {
         let tryRefresh;
-        tryRefresh = await requestRefreshToken();
-        if (tryRefresh === false) {
+        await requestRefreshToken().then(res => tryRefresh=res).catch(e => console.log(e));
+        if (tryRefresh === true) {
+            return "success";
+        }
+        else {
             localStorage.removeItem("handle_refresh");
             localStorage.removeItem("refresh_timestamp");
             return "askToLogin";
-        }
-        else {
-            return "success";
         }
 
     }
@@ -248,7 +252,7 @@ export async function stateManager() {
     }
     else {
         localStorage.setItem("just_redirected", "yes");
-        await requestCode();
+        await requestCode().catch(e => console.log(e));
         return "redirect";
     }
 }
@@ -290,7 +294,7 @@ export async function fetchData(ask, src = 'sch', auth=true) {
 export async function getData() {
     let data = {};
 
-    data.dataState = await stateManager();
+    await stateManager().then(state => data.dataState=state).catch(e => {console.log(e); data.dataState="askToLogin"});
     let userId = false;
     let dtt = false;
     let tt = false;
