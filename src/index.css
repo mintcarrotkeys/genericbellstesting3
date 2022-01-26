@@ -1303,3 +1303,10 @@ b {
     align-items: center;
     font-size: 13px;
 }
+
+.barcodeFontLoader {
+    font-size: 3px;
+    font-family: 'Libre Barcode 128', sans-serif;
+    opacity: 0;
+
+}

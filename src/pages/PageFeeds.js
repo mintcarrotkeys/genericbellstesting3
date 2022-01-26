@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { passItem } from "../version";
 import FeedItem from "../components/FeedItem";
+import Offline from "../components/Offline";
 
 
 export default function PageFeeds(props) {
@@ -56,6 +57,7 @@ export default function PageFeeds(props) {
 
     const output = (
         <div className="page__feeds page__prop">
+            {props.isOffline ? <Offline /> : ""}
             <h1>Notices</h1>
             <div className="feeds__container ">
                 {feedScroll}

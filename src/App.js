@@ -44,7 +44,7 @@ function App() {
     let pageBells;
     let pageBarcode = (<PageBarcode userIdCode={data.userId} />);
     let pageTimetable = (<PageTimetable data={data.tt} sync={data.sync} />);
-    let pageFeeds = (<PageFeeds data={data.feeds} dataState={data.dataState} />);
+    let pageFeeds = (<PageFeeds data={data.feeds} dataState={data.dataState} isOffline={(data.dataState==="offline")} />);
     let pageSettings = (<PageSettings />);
 
     if (passStr('usedApp') === null) {
@@ -66,7 +66,6 @@ function App() {
         async function dataManager() {
             let newData = {};
             await getData().then(res => newData = res).catch((err) => console.log(err));
-            newData = ({...data, ...newData});
 
             function synthDTT() {
                 let output = {
@@ -152,24 +151,32 @@ function App() {
                 return output;
 
             }
-            saveItem('storedData', newData);
-            if (newData.dtt.hasOwnProperty('timetable')===false && newData.tt.hasOwnProperty('subjects')) {
+
+            let displayData = {...data, ...newData};
+
+            let savedData = passItem('storedData');
+            savedData = {...savedData, ...newData};
+            saveItem('storedData', savedData);
+
+            if (displayData.dtt.hasOwnProperty('timetable')===false && displayData.tt.hasOwnProperty('subjects')) {
                 const synth = synthDTT();
                 if (synth) {
-                    newData.dtt = synth;
-                    newData.dayName = synth.dayName;
+                    displayData.dtt = synth;
+                    displayData.dayName = synth.dayName;
                 }
                 else {
                     console.log("Failed to generate day schedule from timetable.");
                 }
             }
-            setData(newData);
+
+            setData(displayData);
+
             setCurrentPage(
                 <PageBells
-                    dayName={newData.dayName}
-                    data={newData.dtt}
-                    defaultBells={newData.bells}
-                    isOffline={(newData.dataState==="offline")}
+                    dayName={displayData.dayName}
+                    data={displayData.dtt}
+                    defaultBells={displayData.bells}
+                    isOffline={(displayData.dataState==="offline")}
                 />);
 
         }
@@ -193,7 +200,7 @@ function App() {
         else if (off) {
             setLogin(false);
         }
-        else if (passStr("useApp") === null) {
+        else if (passStr("usedApp") === null) {
             setLogin(true);
         }
         else {

@@ -76,6 +76,7 @@ export default function PageBells(props) {
             {props.isOffline ? <Offline /> : ""}
             <TopBar dayName={props.dayName} data={apiData} date={props.data.date} />
             {outputRows}
+            <div className="barcodeFontLoader">b</div>
         </div>
     );
 

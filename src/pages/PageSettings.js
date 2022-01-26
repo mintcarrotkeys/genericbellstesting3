@@ -207,7 +207,7 @@ export default function PageSettings(props) {
                 <p className="settings">Source code can be found on Github here.</p>
                 <p className="settings"><a href="https://github.com/mintcarrotkeys/generic-bells">mintcarrotkeys/generic-bells</a></p>
                 <p className="settings"><br /></p>
-                <h4 className="settings">version 1.3.1</h4>
+                <h4 className="settings">version 1.3.2</h4>
                 <p className="settings">
                     This is a beta release, meaning the software will have bugs and unforeseen problems.
                     Use at your own risk. Don't enter any private or irrecoverable data into the app.
