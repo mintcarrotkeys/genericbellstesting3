@@ -1408,7 +1408,11 @@ b {
     background-color: transparent;
 }
 
+.barcodeResize__button:active {
+    color: #92c748;
+}
+
 .barcodeResize__icon {
-    width: 25px;
-    height: 25px;
+    min-width: 25px;
+    min-height: 25px;
 }

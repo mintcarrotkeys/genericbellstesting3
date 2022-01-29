@@ -57,7 +57,9 @@ export default function PageBarcode(props) {
 
     function initialSize() {
         let savedSize = passStr(storeBarcodeSize);
+        console.log(savedSize);
         if (savedSize !== null && Number(savedSize) >= 0 && Number(savedSize) <= 10) {
+            console.log(Number(savedSize));
             return Number(savedSize);
         }
         else {
