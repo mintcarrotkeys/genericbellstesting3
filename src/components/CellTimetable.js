@@ -14,10 +14,18 @@ export default function CellTimetable(props) {
         color: (props.colour.isDark ? 'white' : 'black')
     }
 
+    let cssIdentifiers = [
+        "tt__cell__name--3char",
+        "tt__cell__name--4-5char",
+        "tt__cell__name--4-5char",
+        "tt__cell__name--6char"
+    ]
+    let nameLength = cssIdentifiers[props.name.length];
+
 
     const output = (
         <div className="tt__cell">
-            <div className="tt__cell__name" style={iconStyle}>{props.name}</div>
+            <div className={"tt__cell__name " + nameLength} style={iconStyle}>{props.name}</div>
             <div className="tt__cell__room">{props.room}</div>
 
 

@@ -964,6 +964,17 @@ p {
         font-weight: 400;
     }
 
+    .tt__cell__name--3char {
+        font-size: 13px;
+    }
+    .tt__cell__name--4-5char {
+        font-size: 12px;
+    }
+    .tt__cell__name--6char {
+        font-size: 11px;
+        font-weight: 500;
+    }
+
 
     .tt__cell__room {
         min-height: 17px;
@@ -1104,6 +1115,16 @@ p {
         font-weight: 400;
     }
 
+    .tt__cell__name--3char {
+        font-size: 16px;
+    }
+    .tt__cell__name--4-5char {
+        font-size: 15px;
+    }
+    .tt__cell__name--6char {
+        font-size: 14px;
+        font-weight: 500;
+    }
 
     .tt__cell__room {
         height: 30px;
@@ -1309,4 +1330,12 @@ b {
     font-family: 'Libre Barcode 128', sans-serif;
     opacity: 0;
 
+}
+
+.barcodeResize__container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
 }

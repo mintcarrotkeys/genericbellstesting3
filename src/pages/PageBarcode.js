@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { code128 } from '../assets/code128TranslationData';
+import {passStr, saveStr} from "../version";
 
 
 export default function PageBarcode(props) {
@@ -45,9 +46,42 @@ export default function PageBarcode(props) {
     }
 
     const [code, setCode] = useState(props.userIdCode);
+    const [barcodeSize, setBarcodeSize] = useState(initialSize);
 
     function handleEntry(e) {
         setCode(e.target.value);
+    }
+
+    const storeBarcodeSize = "barcode_size";
+
+    function initialSize() {
+        let savedSize = passStr(storeBarcodeSize);
+        if (savedSize !== null && Number(savedSize) >= 0 && Number(savedSize) <= 10) {
+            return Number(savedSize);
+        }
+        else {
+            return 5;
+        }
+    }
+
+    function handleSize(dir) {
+        if (dir === "+" && barcodeSize < 10) {
+            saveStr(storeBarcodeSize, (barcodeSize + 1).toString());
+            setBarcodeSize(barcodeSize + 1);
+        }
+        else if (dir === "-" && barcodeSize > 0) {
+            saveStr(storeBarcodeSize, (barcodeSize - 1).toString());
+            setBarcodeSize(barcodeSize - 1);
+        }
+        else {
+            console.log("Problem resizing barcode");
+        }
+    }
+
+    function resetBarcode() {
+        localStorage.removeItem(storeBarcodeSize);
+        setBarcodeSize(5);
+        setCode(props.userIdCode);
     }
 
     const output = (
@@ -60,8 +94,15 @@ export default function PageBarcode(props) {
                 value={code}
                 onChange={handleEntry}
             />
-            <div className="button resetBarcodeId" onClick={() => setCode(props.userIdCode)}>Reset</div>
-            <div className="barcodeOutput">{(code!=="" ? encoder(code) : encoder("00000000"))}</div>
+            <div className="button resetBarcodeId" onClick={resetBarcode}>Reset</div>
+            <div className="barcodeResize__container">
+                <button className="barcodeResize__button" onClick={() => handleSize("+")}>+</button>
+                <div>Adjust size</div>
+                <button className="barcodeResize__button" onClick={() => handleSize("-")}>-</button>
+            </div>
+            <div className="barcodeOutput" style={{fontSize: "calc(" + (barcodeSize*10).toString() + "px + 10vw);"}}>
+                {(code!=="" ? encoder(code) : encoder("00000000"))}
+            </div>
         </div>
     );
 
