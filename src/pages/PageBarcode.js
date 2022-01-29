@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { code128 } from '../assets/code128TranslationData';
 import {passStr, saveStr} from "../version";
+import {resizeIcon} from "../assets/nav-icons";
 
 
 export default function PageBarcode(props) {
@@ -65,6 +66,8 @@ export default function PageBarcode(props) {
     }
 
     function handleSize(dir) {
+        console.log(dir);
+        console.log(barcodeSize);
         if (dir === "+" && barcodeSize < 10) {
             saveStr(storeBarcodeSize, (barcodeSize + 1).toString());
             setBarcodeSize(barcodeSize + 1);
@@ -96,9 +99,15 @@ export default function PageBarcode(props) {
             />
             <div className="button resetBarcodeId" onClick={resetBarcode}>Reset</div>
             <div className="barcodeResize__container">
-                <button className="barcodeResize__button" onClick={() => handleSize("+")}>+</button>
+                <div>smaller</div>
+                <button className="barcodeResize__button" onClick={() => handleSize("-")}>
+                    {resizeIcon.minus}
+                </button>
                 <div>Adjust size</div>
-                <button className="barcodeResize__button" onClick={() => handleSize("-")}>-</button>
+                <button className="barcodeResize__button" onClick={() => handleSize("+")}>
+                    {resizeIcon.plus}
+                </button>
+                <div>bigger</div>
             </div>
             <div className="barcodeOutput" style={{fontSize: "calc(" + (barcodeSize*10).toString() + "px + 10vw);"}}>
                 {(code!=="" ? encoder(code) : encoder("00000000"))}

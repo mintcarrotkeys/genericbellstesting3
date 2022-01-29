@@ -58,23 +58,23 @@ export default function PageSettings(props) {
 
     function handleFeedsToggle(side) {
         if (!side) {
-            saveStr('set_tt_week_order', '');
-            setTimetableWeekOrder(false);
-        }
-        else {
-            saveStr('set_tt_week_order', 'yes');
-            setTimetableWeekOrder(true);
-        }
-    }
-
-    function handleTimetableWeekOrderToggle(side) {
-        if (!side) {
             saveStr('set_feeds_expanded', '');
             setFeedsExpanded(false);
         }
         else {
             saveStr('set_feeds_expanded', 'yes');
             setFeedsExpanded(true);
+        }
+    }
+
+    function handleTimetableWeekOrderToggle(side) {
+        if (!side) {
+            saveStr('set_tt_week_order', '');
+            setTimetableWeekOrder(false);
+        }
+        else {
+            saveStr('set_tt_week_order', 'yes');
+            setTimetableWeekOrder(true);
         }
     }
 
@@ -192,7 +192,7 @@ export default function PageSettings(props) {
             </div>
             <div className="group">
                 <h2 className="settings">Timetable display style</h2>
-                <h5 className="settings">Order weeks are shown in</h5>
+                <h5 className="settings">Order weeks are shown in:</h5>
                 <div className="toggle">
                     <div className={"toggle__left toggle__side" + (!timetableWeekOrder ? " toggle--selected" : "")}
                          onClick={() => handleTimetableWeekOrderToggle(false)}>
@@ -203,7 +203,7 @@ export default function PageSettings(props) {
                         current week first
                     </div>
                 </div>
-                <p>
+                <p className="settings">
                     <b>static: </b>Weeks are always shown in A-B-C order from top to bottom.
                     <br />
                     <b>current week first: </b>
@@ -212,8 +212,21 @@ export default function PageSettings(props) {
             </div>
             <div className="group">
                 <h2 className="settings">Help</h2>
+
                 <h5 className="settings">Show teacher name for periods</h5>
                 <p className="settings">Click on each period on the main page to see details.</p>
+
+                <h5 className="settings">Install/Add this app to your home screen</h5>
+                <p className="settings">
+                    iOS: Safari > share (arrow-up icon on the right of the url bar) > Add to home screen
+                </p>
+                <p className="settings">
+                    Android: Chrome > menu (3-dots icon on the right of url bar) > Install
+                </p>
+                <p className="settings">
+                    Windows: Edge > Install (blocks icon inside the url bar on the right end)
+                </p>
+
                 <h5 className="settings">Site not working?</h5>
                 <p className="settings">Close all browser tabs and try again.</p>
                 <p className="settings">
@@ -221,6 +234,7 @@ export default function PageSettings(props) {
                     This may be listed under various names like privacy, cookies, manage browsing data etc.
                     Look up your browser to see how to do this.
                 </p>
+
                 <h5 className="settings">Contact</h5>
                 <p className="settings">
                     Google forms: <a href="https://forms.gle/me4tVTEv1ect7Lhn9">https://forms.gle/me4tVTEv1ect7Lhn9</a>

@@ -246,6 +246,7 @@ p {
         height: calc(0.72 * (100vw / 5.7887));
         padding-top: calc(0.14 * (100vw / 5.7887));
         padding-bottom: calc(0.14 * (100vw / 5.7887));
+        background-color: white;
 
         flex: 1 1;
 
@@ -255,6 +256,10 @@ p {
         justify-content: center;
     }
 
+    .nav__button:hover {
+        background-color: #e0e0e0;
+
+    }
 
     .nav__button__icon {
         width: 35px;
@@ -269,7 +274,7 @@ p {
 
 
     .nav__button--currentPage {
-        background-image: linear-gradient(to top,  #e0e0e0 30%, #ffffff 100%);
+        background-image: linear-gradient(to top,  #e0e0e0 30%, #ffffff00 100%);
     }
 
 
@@ -988,7 +993,21 @@ p {
         justify-content: center;
         align-items: center;
 
+        font-size: 13px;
         font-weight: 500;
+    }
+
+    .tt__cell__room--3char {
+        font-size: 13px;
+    }
+    .tt__cell__room--4char {
+        font-size: 13px;
+    }
+    .tt__cell__room--5char {
+        font-size: 12px;
+    }
+    .tt__cell__room--6char {
+        font-size: 11px;
     }
 
 
@@ -1139,7 +1158,21 @@ p {
         align-items: center;
         text-align: center;
 
+        font-size: 17px;
         font-weight: 500;
+    }
+
+    .tt__cell__room--3char {
+        font-size: 17px;
+    }
+    .tt__cell__room--4char {
+        font-size: 16px;
+    }
+    .tt__cell__room--5char {
+        font-size: 14px;
+    }
+    .tt__cell__room--6char {
+        font-size: 12px;
     }
 
 
@@ -1245,9 +1278,9 @@ p {
 
 .toggle {
     background-color: white;
-    border-radius: 6px;
+    border-radius: 5px;
     color: #222222;
-    border: solid 1px #333333;
+    border: none;
     font-size: 15px;
     font-family: inherit;
     margin: 10px;
@@ -1258,18 +1291,21 @@ p {
 .toggle__side {
     padding: 5px 10px;
     display: inline-block;
+    border: solid 1px #333333;
 }
 
 
 .toggle__left {
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
+    border-right: none;
 }
 
 
 .toggle__right {
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
+    border-left: none;
 }
 
 
@@ -1338,4 +1374,10 @@ b {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+}
+
+.barcodeResize__button {
+    margin: 10px;
+    width: 20px;
+    height: 20px;
 }
