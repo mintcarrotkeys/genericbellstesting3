@@ -89,13 +89,15 @@ export default function PageTimetable(props) {
                 <WeekTimetable weekName={"B"} today={0} data={dataB} key={"weekB"}/>,
                 <WeekTimetable weekName={"C"} today={0} data={dataC} key={"weekC"}/>
             ]
-        } else if (orderInfo.week === 1) {
+        }
+        else if (orderInfo.week === 1) {
             weeks = [
                 <WeekTimetable weekName={"B"} today={orderInfo.day} data={dataB} key={"weekB"}/>,
                 <WeekTimetable weekName={"C"} today={0} data={dataC} key={"weekC"}/>,
                 <WeekTimetable weekName={"A"} today={0} data={dataA} key={"weekA"}/>
             ]
-        } else if (orderInfo.week === 2) {
+        }
+        else if (orderInfo.week === 2) {
             weeks = [
                 <WeekTimetable weekName={"C"} today={orderInfo.day} data={dataC} key={"weekC"}/>,
                 <WeekTimetable weekName={"A"} today={0} data={dataA} key={"weekA"}/>,

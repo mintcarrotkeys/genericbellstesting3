@@ -80,6 +80,10 @@ export async function requestRefreshToken() {
         // console.log(tokens);
         localStorage.setItem('handle_access', tokens['access_token']);
         localStorage.setItem('access_timestamp', Date.now().toString());
+        if (tokens.hasOwnProperty('refresh_token')) {
+            localStorage.setItem('handle_refresh', tokens['refresh_token']);
+            localStorage.setItem('refresh_timestamp', Date.now().toString());
+        }
 
         return true;
     }
@@ -144,6 +148,10 @@ export async function requestToken() {
         localStorage.setItem('handle_refresh', tokens['refresh_token']);
         localStorage.setItem('refresh_timestamp', Date.now().toString());
     }
+
+    localStorage.removeItem('handle_state');
+    localStorage.removeItem('handle_verifier');
+
 
     return true;
 }
