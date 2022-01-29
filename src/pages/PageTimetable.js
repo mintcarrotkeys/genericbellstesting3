@@ -82,6 +82,7 @@ export default function PageTimetable(props) {
     let weeks = [];
     let timetableWeekOrder = passStr("set_tt_week_order");
     if (timetableWeekOrder === "yes") {
+        console.log("Timetable order set to current week first")
         if (orderInfo.week <= 0) {
             weeks = [
                 <WeekTimetable weekName={"A"} today={orderInfo.day} data={dataA} key={"weekA"}/>,
@@ -103,6 +104,7 @@ export default function PageTimetable(props) {
         }
     }
     else {
+        console.log("Timetable order set to static")
         if (orderInfo.week <= 0) {
             weeks = [
                 <WeekTimetable weekName={"A"} today={orderInfo.day} data={dataA} key={"weekA"} />,

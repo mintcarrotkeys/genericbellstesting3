@@ -16,7 +16,8 @@ export default function CellTimetable(props) {
 
     let cssIdentifiers = [
         "tt__cell__name--3char",
-        "tt__cell__name--4-5char",
+        "tt__cell__name--4char",
+        "tt__cell__name--5char",
         "tt__cell__name--6char"
     ]
     let nameLengthCSS = "";
@@ -24,11 +25,14 @@ export default function CellTimetable(props) {
     if (nameLength <= 3) {
         nameLengthCSS = cssIdentifiers[0];
     }
-    else if (nameLength >= 4 && nameLength <= 5) {
+    else if (nameLength === 4) {
         nameLengthCSS = cssIdentifiers[1];
     }
-    else if (nameLength >= 6) {
+    else if (nameLength === 5) {
         nameLengthCSS = cssIdentifiers[2];
+    }
+    else if (nameLength >= 6) {
+        nameLengthCSS = cssIdentifiers[3];
     }
 
     let cssRoomIdentifiers = [

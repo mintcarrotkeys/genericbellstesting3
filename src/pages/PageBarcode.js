@@ -109,7 +109,7 @@ export default function PageBarcode(props) {
                 </button>
                 <div>bigger</div>
             </div>
-            <div className="barcodeOutput" style={{fontSize: "calc(" + (barcodeSize*10).toString() + "px + 10vw);"}}>
+            <div className="barcodeOutput" style={{fontSize: ("calc(" + (barcodeSize*10).toString() + "px + 10vw)")}}>
                 {(code!=="" ? encoder(code) : encoder("00000000"))}
             </div>
         </div>

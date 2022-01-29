@@ -256,11 +256,6 @@ p {
         justify-content: center;
     }
 
-    .nav__button:hover {
-        background-color: #e0e0e0;
-
-    }
-
     .nav__button__icon {
         width: 35px;
         height: 35px;
@@ -352,7 +347,7 @@ p {
 
 
     .nav__button--currentPage {
-        background-image: linear-gradient(to right, #e0e0e0 30%, #ffffff 100%);
+        background-image: linear-gradient(to right, #e0e0e0 30%, #ffffff00 100%);
     }
 
 
@@ -393,6 +388,9 @@ p {
     justify-content: center;
 }
 
+.nav__button:hover {
+    background-color: #e0e0e0;
+}
 
 .nav__button--center__icon {
     flex: 1 1 50px;
@@ -972,7 +970,10 @@ p {
     .tt__cell__name--3char {
         font-size: 13px;
     }
-    .tt__cell__name--4-5char {
+    .tt__cell__name--4char {
+        font-size: 13px;
+    }
+    .tt__cell__name--5char {
         font-size: 12px;
     }
     .tt__cell__name--6char {
@@ -1137,7 +1138,10 @@ p {
     .tt__cell__name--3char {
         font-size: 16px;
     }
-    .tt__cell__name--4-5char {
+    .tt__cell__name--4char {
+        font-size: 16px;
+    }
+    .tt__cell__name--5char {
         font-size: 15px;
     }
     .tt__cell__name--6char {
@@ -1378,6 +1382,12 @@ b {
 
 .barcodeResize__button {
     margin: 10px;
+    width: 20px;
+    height: 20px;
+    color: #333333;
+}
+
+.barcodeResize__icon {
     width: 20px;
     height: 20px;
 }
