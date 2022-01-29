@@ -19,7 +19,7 @@ function App() {
             timestamp: 0,
             dayName: "Loading ...",
             dataState: "",
-            userId: "000000000",
+            userId: "",
             dtt: {},
             tt: {},
             feeds: {},
@@ -68,13 +68,17 @@ function App() {
             let newData = {};
             let newDataInput = {};
             let doNothing;
-            await getData()
+            let getId = true;
+            if (data.userId !== "") {
+                getId = false;
+            }
+            await getData(getId)
                 .then(res => newDataInput=res)
                 .then(() => (newDataInput.hasOwnProperty("dataState") ? newData=newDataInput : doNothing=false))
                 .catch((err) => console.log(err));
-            console.log(data);
-            console.log(newData);
-            console.log(newDataInput);
+            // console.log(data);
+            // console.log(newData);
+            // console.log(newDataInput);
 
             function synthDTT() {
                 let output = {

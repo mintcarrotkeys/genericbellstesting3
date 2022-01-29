@@ -33,8 +33,18 @@ export default function PageSettings(props) {
         }
     }
 
-    function logout(e) {
+    function clearData(e) {
         localStorage.clear();
+        sessionStorage.clear();
+        window.location.reload();
+    }
+    function logoutData(e) {
+        localStorage.removeItem('access_timestamp');
+        localStorage.removeItem('handle_access');
+        localStorage.removeItem('refresh_timestamp');
+        localStorage.removeItem('handle_refresh');
+        localStorage.removeItem('usedApp');
+        localStorage.removeItem('storedData');
         sessionStorage.clear();
         window.location.reload();
     }
@@ -254,7 +264,14 @@ export default function PageSettings(props) {
                 </p>
             </div>
             <div className="group">
-                <button className="settings button" onClick={logout}>Clear data</button>
+                <button className="settings button" onClick={logoutData}>Logout</button>
+                <p className="settings" style={{"marginTop": "0px"}}>
+                    This will delete the timetable data & any tokens stored on your device. <br />
+                    <span style={{fontWeight: 500}}>
+                        Note: Your settings, including the names of your classes and teachers, will NOT be deleted.
+                    </span>
+                </p>
+                <button className="settings button" onClick={clearData}>Clear data</button>
                 <p className="settings" style={{"marginTop": "0px"}}>
                     This will clear all user data that we store on your computer. <br />
                     <span style={{fontWeight: 500}}>Note: Your settings will be deleted.</span>
