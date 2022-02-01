@@ -57,9 +57,9 @@ export default function PageBarcode(props) {
 
     function initialSize() {
         let savedSize = passStr(storeBarcodeSize);
-        console.log(savedSize);
+        // console.log(savedSize);
         if (savedSize !== null && Number(savedSize) >= 0 && Number(savedSize) <= 10) {
-            console.log(Number(savedSize));
+            // console.log(Number(savedSize));
             return Number(savedSize);
         }
         else {
@@ -68,8 +68,8 @@ export default function PageBarcode(props) {
     }
 
     function handleSize(dir) {
-        console.log(dir);
-        console.log(barcodeSize);
+        // console.log(dir);
+        // console.log(barcodeSize);
         if (dir === "+" && barcodeSize < 10) {
             saveStr(storeBarcodeSize, (barcodeSize + 1).toString());
             setBarcodeSize(barcodeSize + 1);

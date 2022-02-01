@@ -99,7 +99,7 @@ function App() {
                     let millisInDay = 86400000;
                     let timeNow = today.getTime();
                     today = new Date((Math.floor(timeNow / millisInDay) * millisInDay) + millisInDay + 10000);
-                    console.log("detected afternoon");
+                    // console.log("detected afternoon");
                 }
                 if (today.getDay() === 6) {
                     showDay = today.getTime() + 2*24*60*60*1000;
@@ -113,8 +113,8 @@ function App() {
                     showDay = today.getTime();
                     dayDiff = today.getDay();
                 }
-                console.log(showDay);
-                console.log(displayData);
+                // console.log(showDay);
+                // console.log(displayData);
 
                 let weekNo = getWeekNum(showDay);
                 let sync = displayData.sync;
@@ -170,7 +170,7 @@ function App() {
                     console.log("Error when generating synthetic day timetable.");
                 }
 
-                console.log(output);
+                // console.log(output);
 
                 return output;
 
