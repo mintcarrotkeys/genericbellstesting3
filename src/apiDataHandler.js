@@ -114,12 +114,17 @@ export function apiDataHandler(apiData) {
         let periodData = {};
         try {
             periodData = apiData.timetable.timetable.periods[periodNumber];
+            if (periodData === undefined) {
+                throw new Error("Can't find period info!");
+            }
         }
         catch {
-                console.log("Can't find period info!");
+                // console.log("Can't find period info!");
                 routine.push({displayAsClass: false, displayName: ("Period " + periodNumber), time: startTime});
                 return;
         }
+        // console.log(periodData);
+        // console.log(displayAsClass, periodNumber, startTime);
 
         if (periodData.hasOwnProperty("title") === false) {
             routine.push({displayAsClass: false, displayName: ("Period " + periodNumber), time: startTime});
