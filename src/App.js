@@ -72,10 +72,10 @@ function App() {
             if (data.userId !== "") {
                 getId = false;
             }
-            // await getData(getId)
-            //     .then(res => newDataInput=res)
-            //     .then(() => (newDataInput.hasOwnProperty("dataState") ? newData=newDataInput : doNothing=false))
-            //     .catch((err) => console.log(err));
+            await getData(getId)
+                .then(res => newDataInput=res)
+                .then(() => (newDataInput.hasOwnProperty("dataState") ? newData=newDataInput : doNothing=false))
+                .catch((err) => console.log(err));
             // console.log(data);
             // console.log(newData);
             // console.log(newDataInput);
