@@ -154,10 +154,15 @@ export function apiDataHandler(apiData) {
         if (apiData.shouldDisplayVariations && apiData.classVariations.hasOwnProperty(periodNumber)) {
             highlightRoom = true;
             const variationData = apiData.classVariations[periodNumber];
-            if (variationData.title === classId) {
+            if (variationData.type === "novariation") {
+                highlightRoom = false;
+            }
+            else if (variationData.title === classId) {
                 if (variationData.hasOwnProperty("roomTo")) {
                     if (variationData.roomTo === null || variationData.roomTo === "") {
-                        displayRoom = "-";
+                        if (variationData.type === "nocover") {
+                            displayRoom = "-";
+                        }
                     }
                     else {
                         displayRoom = variationData.roomTo;
