@@ -89,9 +89,16 @@ export default function PageBarcode(props) {
             output = [...saved];
         }
         if (props.userIdCode !== "" && output.indexOf(props.userIdCode) === -1)  {
+            let i = 0;
+            while (i < output.length) {
+                if (props.userIdCode === output[i].code && "myId" === output[i].name) {
+                    return output;
+                }
+                i++;
+            }
             output.splice(0, 0, {'code': code, 'name': "myId"});
+            saveItem(SID_saveBarcodes, output);
         }
-        saveItem(SID_saveBarcodes, output);
 
         return output;
     }
