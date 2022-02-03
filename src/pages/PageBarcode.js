@@ -179,6 +179,11 @@ export default function PageBarcode(props) {
         i++;
     }
 
+    function deleteAllSavedBarcodes() {
+        localStorage.removeItem(SID_saveBarcodes);
+        setSavedBarcodes([]);
+    }
+
     const output = (
         <div className="page__barcode page__prop">
             <h1 className="bigHeading">Barcode</h1>
@@ -229,10 +234,11 @@ export default function PageBarcode(props) {
                         <div className="button" id="saveBarcode__submit" onClick={saveABarcode}>Save</div>
                     </div>
                 </div>
-                <h3>Saved Barcodes</h3>
+                <h3>Saved barcodes</h3>
                 {savedBarcodeList}
             </div>
             <div className="button" onClick={resetBarcode}>Reset current barcode to my ID</div>
+            <div className="button" onClick={deleteAllSavedBarcodes}>Delete all saved barcodes</div>
         </div>
     );
 
