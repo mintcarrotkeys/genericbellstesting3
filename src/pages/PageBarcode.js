@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { code128 } from '../assets/code128TranslationData';
-import {passStr, saveStr} from "../version";
+import {passItem, passStr, saveItem, saveStr} from "../version";
 import {resizeIcon} from "../assets/nav-icons";
+import SavedBarcode from "../components/SavedBarcode";
+
+const SID_saveBarcodes = "save_barcodes";
 
 
 export default function PageBarcode(props) {
@@ -48,11 +51,22 @@ export default function PageBarcode(props) {
 
     const storeBarcodeSize = "barcode_size";
 
-    const [code, setCode] = useState(props.userIdCode);
+    const [code, setCode] = useState(initialBarcode);
     const [barcodeSize, setBarcodeSize] = useState(initialSize);
+    const [savedBarcodes, setSavedBarcodes] = useState(initSavedBarcodes);
+
+    function initialBarcode() {
+        if (props.userIdCode !== "") {
+            return props.userIdCode;
+        }
+        else {
+            return "000000000";
+        }
+    }
 
     function handleEntry(e) {
         setCode(e.target.value);
+        setAddBarcodeCode(e.target.value);
     }
 
 
@@ -66,6 +80,20 @@ export default function PageBarcode(props) {
         else {
             return 5;
         }
+    }
+
+    function initSavedBarcodes() {
+        const saved = passItem(SID_saveBarcodes);
+        let output = [];
+        if (saved !== null) {
+            output = [...saved];
+        }
+        if (props.userIdCode !== "" && output.indexOf(props.userIdCode) === -1)  {
+            output.splice(0, 0, {'code': code, 'name': "myId"});
+        }
+        saveItem(SID_saveBarcodes, output);
+
+        return output;
     }
 
     function handleSize(dir) {
@@ -90,6 +118,60 @@ export default function PageBarcode(props) {
         setCode(props.userIdCode);
     }
 
+    function saveABarcode() {
+        if (addBarcodeCode !== "") {
+            let i = 0;
+            while (i < savedBarcodes.length) {
+                if (savedBarcodes[i].code === addBarcodeCode && savedBarcodes[i].name === addBarcodeName) {
+                    return false;
+                }
+                i++;
+            }
+            let saveBarcodeData = [...savedBarcodes, {'code': addBarcodeCode, 'name': addBarcodeName}];
+            saveItem(SID_saveBarcodes,saveBarcodeData);
+            setSavedBarcodes(saveBarcodeData);
+        }
+    }
+
+    function handleSelectSavedBarcode(savedCode) {
+        setCode(savedCode);
+    }
+
+    function handleDeleteSavedBarcode(id) {
+        let barcodes = [...savedBarcodes];
+        barcodes.splice(id, 1);
+        setSavedBarcodes(barcodes);
+    }
+
+    const [addBarcodeName, setAddBarcodeName] = useState("");
+    const [addBarcodeCode, setAddBarcodeCode] = useState(code);
+
+    function handleBarcodeCode(e) {
+        setAddBarcodeCode(e.target.value);
+    }
+
+    function handleBarcodeName(e) {
+        setAddBarcodeName(e.target.value);
+    }
+
+    let savedBarcodeList = [];
+    let i = 0;
+    while (i < savedBarcodes.length) {
+        savedBarcodeList.push(
+            <SavedBarcode
+                key={savedBarcodes[i].code + (savedBarcodes[i].code === code ? "-" : "") + i.toString()}
+                id={i}
+                code={savedBarcodes[i].code}
+                selected={savedBarcodes[i].code === code}
+                name={savedBarcodes[i].name}
+                handleClick={handleSelectSavedBarcode}
+                handleDelete={handleDeleteSavedBarcode}
+                noDelete={(savedBarcodes[i].code === props.userIdCode)}
+            />
+        );
+        i++;
+    }
+
     const output = (
         <div className="page__barcode page__prop">
             <h1 className="bigHeading">Barcode</h1>
@@ -100,7 +182,6 @@ export default function PageBarcode(props) {
                 value={code}
                 onChange={handleEntry}
             />
-            <div className="button resetBarcodeId" onClick={resetBarcode}>Reset</div>
             <div className="barcodeResize__container">
                 <div>smaller</div>
                 <button className="barcodeResize__button" onClick={() => handleSize("-")}>
@@ -115,6 +196,36 @@ export default function PageBarcode(props) {
             <div className="barcodeOutput" style={{fontSize: ("calc(" + (barcodeSize*10).toString() + "px + 10vw)")}}>
                 {(code!=="" ? encoder(code) : encoder("00000000"))}
             </div>
+            <div className="savedBarcode__container group">
+                <div className="saveBarcodeTool">
+                    <h3 style={{margin: "0px"}}>Save current barcode</h3>
+                    <div id="saveBarcodeForm__code">
+                        <input
+                            type="text"
+                            maxLength={50}
+                            id="saveBarcode__input"
+                            value={addBarcodeName}
+                            onChange={handleBarcodeName}
+                            placeholder="add a name to this barcode"
+                            className="inputBox"
+                        />
+                    </div>
+                    <div id="saveBarcodeForm">
+                        <input
+                            type="text"
+                            maxLength={20}
+                            id="saveBarcode__codeInput"
+                            value={addBarcodeCode}
+                            onChange={handleBarcodeCode}
+                            className="inputBox"
+                        />
+                        <div className="button" id="saveBarcode__submit" onClick={saveABarcode}>Save</div>
+                    </div>
+                </div>
+                <h3>Saved Barcodes</h3>
+                {savedBarcodeList}
+            </div>
+            <div className="button" onClick={resetBarcode}>Reset current barcode to my ID</div>
         </div>
     );
 

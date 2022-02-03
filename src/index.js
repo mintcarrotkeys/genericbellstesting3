@@ -5,6 +5,7 @@ import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import {saveItem} from "./version";
 
+//TODO: PREFLIGHT: remove testing data
 
 // let TESTDATA = ;
 //
