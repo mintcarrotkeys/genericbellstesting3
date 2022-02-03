@@ -88,7 +88,7 @@ export default function PageBarcode(props) {
         if (saved !== null) {
             output = [...saved];
         }
-        if (props.userIdCode !== "" && output.indexOf(props.userIdCode) === -1)  {
+        if (props.userIdCode !== "")  {
             let i = 0;
             while (i < output.length) {
                 if (props.userIdCode === output[i].code && "myId" === output[i].name) {
@@ -129,7 +129,7 @@ export default function PageBarcode(props) {
         if (addBarcodeCode !== "") {
             let i = 0;
             while (i < savedBarcodes.length) {
-                if (savedBarcodes[i].code === addBarcodeCode && savedBarcodes[i].name === addBarcodeName) {
+                if (savedBarcodes[i].code === addBarcodeCode) {
                     return false;
                 }
                 i++;
@@ -142,6 +142,7 @@ export default function PageBarcode(props) {
 
     function handleSelectSavedBarcode(savedCode) {
         setCode(savedCode);
+        setAddBarcodeCode(savedCode);
     }
 
     function handleDeleteSavedBarcode(id) {
