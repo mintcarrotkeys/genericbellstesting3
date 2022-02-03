@@ -128,7 +128,7 @@ export default function PageBarcode(props) {
                 i++;
             }
             let saveBarcodeData = [...savedBarcodes, {'code': addBarcodeCode, 'name': addBarcodeName}];
-            saveItem(SID_saveBarcodes,saveBarcodeData);
+            saveItem(SID_saveBarcodes, saveBarcodeData);
             setSavedBarcodes(saveBarcodeData);
         }
     }
@@ -198,7 +198,7 @@ export default function PageBarcode(props) {
             </div>
             <div className="savedBarcode__container group">
                 <div className="saveBarcodeTool">
-                    <h3 style={{margin: "0px"}}>Save current barcode</h3>
+                    <h3 style={{margin: "0px"}}>Save a barcode</h3>
                     <div id="saveBarcodeForm__code">
                         <input
                             type="text"
