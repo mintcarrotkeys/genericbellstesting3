@@ -18,5 +18,5 @@ ReactDOM.render(
     document.getElementById('root')
 );
 
-//TODO: PREFLIGHT: serviceworker
+//TODO: PREFLIGHT: serviceworker - turn off dev build first!
 serviceWorkerRegistration.unregister();
