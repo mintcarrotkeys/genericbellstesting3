@@ -90,7 +90,7 @@ export default function PageSettings(props) {
 
     function chooseFeedYear(e) {
         if (e.target.value === "all") {
-            saveItem({seeOnlyMyYear: false, year: ""});
+            saveItem("feedSettings", {seeOnlyMyYear: false, year: ""});
         }
         else {
             saveItem("feedSettings", {seeOnlyMyYear: true, year: e.target.value});
@@ -260,7 +260,7 @@ export default function PageSettings(props) {
             <div className="group">
                 <h2 className="settings">About Generic Bells</h2>
                 {/* TODO: PREFLIGHT: version number */}
-                <h4 className="settings">version 1.4.6</h4>
+                <h4 className="settings">version 1.4.7</h4>
                 <p className="settings">A colourful, customisable & concise web app to show your SBHS timetable data.</p>
                 <p className="settings">Source code can be found on Github here.</p>
                 <p className="settings"><a
