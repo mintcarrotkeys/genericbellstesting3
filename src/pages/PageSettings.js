@@ -3,6 +3,8 @@ import ClassInfo from "../components/ClassInfo";
 import {passStr, saveStr, passItem, saveItem} from "../version";
 import { ReactComponent as Logo } from "../assets/favicon3.svg";
 
+/** TODO: PREFLIGHT: version number **/
+let appVersion = "1.4.8";
 
 export default function PageSettings(props) {
 
@@ -259,8 +261,7 @@ export default function PageSettings(props) {
 
             <div className="group">
                 <h2 className="settings">About Generic Bells</h2>
-                {/* TODO: PREFLIGHT: version number */}
-                <h4 className="settings">version 1.4.7</h4>
+                <h4 className="settings">version {appVersion}</h4>
                 <p className="settings">A colourful, customisable & concise web app to show your SBHS timetable data.</p>
                 <p className="settings">Source code can be found on Github here.</p>
                 <p className="settings"><a
@@ -331,16 +332,16 @@ export default function PageSettings(props) {
                     <br />
                 </p>
             </div>
-            <div className="group">
-                <h1 className="settings">Sample text</h1>
-                <h2 className="settings">Heading 2</h2>
-                <h3 className="settings">Heading 3</h3>
-                <h4 className="settings">Heading 4</h4>
-                <h5 className="settings">Heading 5</h5>
-                <h6 className="settings">Heading 6</h6>
-                <p className="settings">Body text</p>
+            {/*<div className="group">*/}
+            {/*    <h1 className="settings">Sample text</h1>*/}
+            {/*    <h2 className="settings">Heading 2</h2>*/}
+            {/*    <h3 className="settings">Heading 3</h3>*/}
+            {/*    <h4 className="settings">Heading 4</h4>*/}
+            {/*    <h5 className="settings">Heading 5</h5>*/}
+            {/*    <h6 className="settings">Heading 6</h6>*/}
+            {/*    <p className="settings">Body text</p>*/}
 
-            </div>
+            {/*</div>*/}
         </div>
     );
 

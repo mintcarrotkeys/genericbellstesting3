@@ -34,7 +34,7 @@ function App() {
                 output = storedData;
             }
             else if (storedData.hasOwnProperty("tt") && storedData.tt.hasOwnProperty('subjects')) {
-                output = {...storedData, ...{dtt: {}, feeds: {}, dataState: "askToLogin"}};
+                output = {...storedData, ...{dtt: {}, feeds: {}, dataState: ""}};
             }
         }
         return output;
@@ -61,7 +61,9 @@ function App() {
             />);
     }
 
+    const [currentPageName, setCurrentPageName] = useState("bells");
     const [currentPage, setCurrentPage] = useState(pageBells);
+    const [showLogin, setLogin] = useState(data.dataState === "askToLogin");
 
     React.useEffect(() => {
         async function dataManager() {
@@ -196,15 +198,30 @@ function App() {
             }
 
             setData(displayData);
+            if (displayData.dataState !== "askToLogin") {
+                setLogin(false);
+            }
 
-            setCurrentPage(
-                <PageBells
-                    dayName={displayData.dayName}
-                    data={displayData.dtt}
-                    defaultBells={displayData.bells}
-                    isOffline={(displayData.dataState==="offline")}
-                />);
-
+            if (currentPageName === "bells") {
+                setCurrentPage(
+                    <PageBells
+                        dayName={displayData.dayName}
+                        data={displayData.dtt}
+                        defaultBells={displayData.bells}
+                        isOffline={(displayData.dataState === "offline")}
+                    />
+                );
+            }
+            else if (currentPageName === "feeds") {
+                setCurrentPage(
+                    <PageFeeds data={displayData.feeds} isOffline={(displayData.dataState==="offline")} />
+                );
+            }
+            else if (currentPageName === "timetable") {
+                setCurrentPage(
+                    <PageTimetable data={displayData.tt} sync={displayData.sync} />
+                );
+            }
         }
         if (passStr("usedApp") === null) {
             return null;
@@ -214,20 +231,20 @@ function App() {
         }
     }, []);
 
-    const [showLogin, setLogin] = useState(data.dataState === "askToLogin");
-
-    function showDataMessage(off) {
-        if (data.dataState === "askToLogin") {
+    function showDataMessage(on, isBells=false) {
+        if (passStr("usedApp") === null) {
+            if (isBells) {
+                setLogin(false);
+            }
+            else {
+                setLogin(true);
+            }
+        }
+        else if (data.dataState === "askToLogin" && on) {
             setLogin(true);
         }
-        else if (data.dataState === "success") {
+        else if (on === false) {
             setLogin(false);
-        }
-        else if (off) {
-            setLogin(false);
-        }
-        else if (passStr("usedApp") === null) {
-            setLogin(true);
         }
         else {
             setLogin(false);
@@ -237,23 +254,28 @@ function App() {
     function reportClicked(name) {
         if (name === "barcode") {
             setCurrentPage(pageBarcode);
-            showDataMessage();
+            setCurrentPageName("barcode");
+            showDataMessage(false);
         }
         else if (name === "timetable") {
             setCurrentPage(pageTimetable);
-            showDataMessage();
+            setCurrentPageName("timetable");
+            showDataMessage(false);
         }
         else if (name === "bells") {
             setCurrentPage(pageBells);
-            showDataMessage(true);
+            setCurrentPageName("bells");
+            showDataMessage(true, true);
         }
         else if (name === "feeds") {
             setCurrentPage(pageFeeds);
-            showDataMessage();
+            setCurrentPageName("feeds");
+            showDataMessage(true);
         }
         else if (name === "settings") {
             setCurrentPage(pageSettings);
-            showDataMessage(true);
+            setCurrentPageName("settings");
+            showDataMessage(false);
         }
     }
 

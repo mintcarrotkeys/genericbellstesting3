@@ -770,6 +770,7 @@ p {
 .topBar__middle {
     flex: 0 0;
     text-align: center;
+    min-width: 100px;
 }
 
 
