@@ -4,7 +4,7 @@ import {passStr, saveStr, passItem, saveItem} from "../version";
 import { ReactComponent as Logo } from "../assets/favicon3.svg";
 
 /** TODO: PREFLIGHT: version number **/
-let appVersion = "1.4.8";
+let appVersion = "1.4.8.1";
 
 export default function PageSettings(props) {
 
@@ -108,7 +108,9 @@ export default function PageSettings(props) {
         <div className="page__settings page__prop">
             <h1 className="bigHeading">Settings</h1>
             <div className="group" id="banner">
-                <Logo style={{width: '100px'}} />
+                <div style={{width: '100px', height: '100px'}}>
+                    <Logo  />
+                </div>
             </div>
             <div className="group">
                 <h2 className="settings">Customise colours & names</h2>

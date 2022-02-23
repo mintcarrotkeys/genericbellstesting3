@@ -23,9 +23,14 @@ export default function PageFeeds(props) {
         feedSettings = Object.assign(feedSettings, storedSettings);
     }
 
+    console.log(props.data.dayInfo.date);
+    console.log(data);
+
     //format to output
     function compareFn(a, b) {
-        return ((b.relativeWeight + b.isMeeting) - (a.relativeWeight + a.isMeeting));
+        let B = b.relativeWeight + b.isMeeting + (b.meetingDate===props.data.dayInfo.date ? 1 : 0);
+        let A = a.relativeWeight + a.isMeeting + (a.meetingDate===props.data.dayInfo.date ? 1 : 0);
+        return (B- A);
     }
 
     if (Array.isArray(data)) {
