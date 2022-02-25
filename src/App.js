@@ -83,7 +83,6 @@ function App() {
             // console.log(data);
             // console.log(newData);
             // console.log(newDataInput);
-            newData.dataState = "askToLogin";
 
             function synthDTT() {
                 let output = {
