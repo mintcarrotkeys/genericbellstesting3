@@ -271,13 +271,13 @@ export async function stateManager() {
 //returns success or askToLogin
 
 export async function fetchData(ask, src = 'direct', auth=true) {
+    // wk = "calendar/days"
     const callables = {
         tt: 'timetable/timetable.json',
         idn: 'details/userinfo.json',
-        wk: 'calendar/days.json',
+        wk: 'timetable/bells.json',
         dtt: 'timetable/daytimetable.json',
-        note: "timetable/bells.json"
-        // note: 'dailynews/list.json'
+        note: 'dailynews/list.json'
     };
 
     let requestUrl;
