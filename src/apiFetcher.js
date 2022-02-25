@@ -296,6 +296,7 @@ export async function fetchData(ask, src = 'direct', auth=true) {
     else if (src === "forward") {
         requestUrl = serverURL + "?ask=" + ask;
     }
+    console.log(requestUrl);
     let res = false;
     await fetch(requestUrl, {headers: new Headers({'Authorization': token})}).then(r => res=r).catch(e => console.log(e));
     let i = 0;
