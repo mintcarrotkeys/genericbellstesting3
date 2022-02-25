@@ -276,7 +276,8 @@ export async function fetchData(ask, src = 'direct', auth=true) {
         idn: 'details/userinfo.json',
         wk: 'calendar/days.json',
         dtt: 'timetable/daytimetable.json',
-        note: 'dailynews/list.json'
+        note: "timetable/bells.json"
+        // note: 'dailynews/list.json'
     };
 
     let requestUrl;
