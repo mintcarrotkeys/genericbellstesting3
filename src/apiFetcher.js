@@ -296,7 +296,7 @@ export async function fetchData(ask, src = 'direct', auth=true) {
     else if (src === "forward") {
         requestUrl = serverURL + "?ask=" + ask;
     }
-    console.log(requestUrl);
+    // console.log(requestUrl);
     let res = false;
     await fetch(requestUrl, {headers: new Headers({'Authorization': token})}).then(r => res=r).catch(e => console.log(e));
     let i = 0;
@@ -326,7 +326,7 @@ export async function getData(getId=true) {
     let note = false;
     if (data.dataState === 'success') {
         let checkAllGood = true;
-        const source = "sch";
+        const source = "direct";
         if (getId) {
             await Promise.all([
                 fetchData('dtt', source).then(res => dtt = res)

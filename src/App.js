@@ -199,8 +199,8 @@ function App() {
 
             setData(displayData);
             setLogin((displayData.dataState === "askToLogin"));
-            console.log(currentPageName);
-            console.log(currentPage);
+            // console.log(currentPageName);
+            // console.log(currentPage);
             if (currentPageName === "bells") {
                 setCurrentPage(
                     <PageBells
