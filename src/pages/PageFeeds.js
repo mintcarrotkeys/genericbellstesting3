@@ -23,8 +23,8 @@ export default function PageFeeds(props) {
         feedSettings = Object.assign(feedSettings, storedSettings);
     }
 
-    console.log(props.data.dayInfo.date);
-    console.log(data);
+    // console.log(props.data.dayInfo.date);
+    // console.log(data);
 
     //format to output
     function compareFn(a, b) {

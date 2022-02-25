@@ -83,6 +83,7 @@ function App() {
             // console.log(data);
             // console.log(newData);
             // console.log(newDataInput);
+            newData.dataState = "askToLogin";
 
             function synthDTT() {
                 let output = {
@@ -198,10 +199,9 @@ function App() {
             }
 
             setData(displayData);
-            if (displayData.dataState !== "askToLogin") {
-                setLogin(false);
-            }
-
+            setLogin((displayData.dataState === "askToLogin"));
+            console.log(currentPageName);
+            console.log(currentPage);
             if (currentPageName === "bells") {
                 setCurrentPage(
                     <PageBells
@@ -283,8 +283,8 @@ function App() {
     const output = (
         <div className="app-container">
             <div className="page">
-                {showLogin ? <DataMessage /> : ""}
                 {currentPage}
+                {showLogin ? <DataMessage /> : ""}
             </div>
             <Nav reportClicked={reportClicked} initialPage="bells" />
         </div>
