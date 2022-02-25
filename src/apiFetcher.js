@@ -270,7 +270,15 @@ export async function stateManager() {
 }
 //returns success or askToLogin
 
-export async function fetchData(ask, src = 'sch', auth=true) {
+export async function fetchData(ask, src = 'direct', auth=true) {
+    const callables = {
+        tt: 'timetable/timetable.json',
+        idn: 'details/userinfo.json',
+        wk: 'calendar/days.json',
+        dtt: 'timetable/daytimetable.json',
+        note: 'dailynews/list.json'
+    };
+
     let requestUrl;
     let token;
     if (auth) {
@@ -282,7 +290,10 @@ export async function fetchData(ask, src = 'sch', auth=true) {
             token = "Bearer " + token;
         }
     }
-    if (src === "sch") {
+    if (src === "direct") {
+        requestUrl = "https://student.sbhs.net.au/api/" + callables[ask];
+    }
+    else if (src === "forward") {
         requestUrl = serverURL + "?ask=" + ask;
     }
     let res = false;
