@@ -42,27 +42,7 @@ function App() {
 
     const [data, setData] = useState(loadStoredData);
 
-    let pageBells;
-    let pageBarcode = (<PageBarcode userIdCode={data.userId} />);
-    let pageTimetable = (<PageTimetable data={data.tt} sync={data.sync} />);
-    let pageFeeds = (<PageFeeds data={data.feeds} isOffline={(data.dataState==="offline")} />);
-    let pageSettings = (<PageSettings />);
-
-    if (passStr('usedApp') === null) {
-        pageBells = (<About />);
-    }
-    else {
-        pageBells = (
-            <PageBells
-                dayName={data.dayName}
-                data={data.dtt}
-                defaultBells={data.bells}
-                isOffline={(data.dataState==="offline")}
-            />);
-    }
-
     const [currentPageName, setCurrentPageName] = useState("bells");
-    const [currentPage, setCurrentPage] = useState(pageBells);
     const [showLogin, setLogin] = useState(data.dataState === "askToLogin");
 
     React.useEffect(() => {
@@ -201,26 +181,6 @@ function App() {
             setLogin((displayData.dataState === "askToLogin"));
             // console.log(currentPageName);
             // console.log(currentPage);
-            if (currentPageName === "bells") {
-                setCurrentPage(
-                    <PageBells
-                        dayName={displayData.dayName}
-                        data={displayData.dtt}
-                        defaultBells={displayData.bells}
-                        isOffline={(displayData.dataState === "offline")}
-                    />
-                );
-            }
-            else if (currentPageName === "feeds") {
-                setCurrentPage(
-                    <PageFeeds data={displayData.feeds} isOffline={(displayData.dataState==="offline")} />
-                );
-            }
-            else if (currentPageName === "timetable") {
-                setCurrentPage(
-                    <PageTimetable data={displayData.tt} sync={displayData.sync} />
-                );
-            }
         }
         if (passStr("usedApp") === null) {
             return null;
@@ -252,31 +212,53 @@ function App() {
 
     function reportClicked(name) {
         if (name === "barcode") {
-            setCurrentPage(pageBarcode);
             setCurrentPageName("barcode");
             showDataMessage(false);
         }
         else if (name === "timetable") {
-            setCurrentPage(pageTimetable);
             setCurrentPageName("timetable");
             showDataMessage(false);
         }
         else if (name === "bells") {
-            setCurrentPage(pageBells);
             setCurrentPageName("bells");
             showDataMessage(true, true);
         }
         else if (name === "feeds") {
-            setCurrentPage(pageFeeds);
             setCurrentPageName("feeds");
             showDataMessage(true);
         }
         else if (name === "settings") {
-            setCurrentPage(pageSettings);
             setCurrentPageName("settings");
             showDataMessage(false);
         }
     }
+
+    let pageBells = (<PageBells dayName={data.dayName} data={data.dtt} defaultBells={data.bells} isOffline={(data.dataState==="offline")} />);
+    let pageBarcode = (<PageBarcode userIdCode={data.userId} />);
+    let pageTimetable = (<PageTimetable data={data.tt} sync={data.sync} />);
+    let pageFeeds = (<PageFeeds data={data.feeds} isOffline={(data.dataState==="offline")} />);
+    let pageSettings = (<PageSettings />);
+
+    let currentPage;
+    if (passStr('usedApp') === null && currentPageName === 'bells') {
+        currentPage = (<About />);
+    }
+    else if (currentPageName === 'bells') {
+        currentPage = pageBells;
+    }
+    else if (currentPageName === 'barcode') {
+        currentPage = pageBarcode;
+    }
+    else if (currentPageName === 'timetable') {
+        currentPage = pageTimetable;
+    }
+    else if (currentPageName === 'feeds') {
+        currentPage = pageFeeds;
+    }
+    else if (currentPageName === 'settings') {
+        currentPage = pageSettings;
+    }
+
 
 
     const output = (
