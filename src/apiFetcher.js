@@ -327,7 +327,7 @@ export async function getData(getId=true) {
     let note = false;
     if (data.dataState === 'success') {
         let checkAllGood = true;
-        const source = "direct";
+        const source = "forward";
         if (getId) {
             await Promise.all([
                 fetchData('dtt', source).then(res => dtt = res)
