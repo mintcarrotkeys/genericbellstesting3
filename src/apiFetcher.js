@@ -4,6 +4,8 @@
 // const useAppId = "genericbells10";
 // const serverURL = "https://forward.genericbells.workers.dev/";
 // const tokenServerURL = "https://refresh.genericbells.workers.dev";
+import {passItem, saveItem} from "./version";
+
 const refreshValidity = 90 * 24 * 60 * 60 * 1000 - 10000;
 const tokenValidity = 60 * 60 * 1000 - 10000;
 
@@ -375,6 +377,11 @@ export async function getData(getId=true) {
             let timestamp = dtt.date.split("-");
             let timestamp2 = new Date(Number(timestamp[0]), Number(timestamp[1]) - 1, Number(timestamp[2]), 16, 0, 0);
             data.timestamp = timestamp2.getTime().toString();
+
+            let storedSettings = passItem('feedSettings');
+            if (storedSettings === null) {
+                saveItem('feedSettings', {seeOnlyMyYear: true, year: tt.student.year});
+            }
         }
         else {
             console.log("Error fetching data.");

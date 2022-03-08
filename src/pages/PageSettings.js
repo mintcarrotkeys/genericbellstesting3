@@ -4,7 +4,7 @@ import {passStr, saveStr, passItem, saveItem} from "../version";
 import { ReactComponent as Logo } from "../assets/favicon3.svg";
 
 /** TODO: PREFLIGHT: version number **/
-let appVersion = "1.5.0.2";
+let appVersion = "1.5.0.4";
 
 export default function PageSettings(props) {
 
@@ -191,8 +191,8 @@ export default function PageSettings(props) {
                         Click again to minimise the message.
                     </p>
                 </div>
-                <div className="dropdown">
-                    <h3 className="dropdown__label settings" style={{fontWeight: 500}}>Only show notices for year: </h3>
+                <div className="dropdown settings">
+                    <h4 className="dropdown__label settings">Show notices for year: </h4>
                     <select name="yearsList" id="yearsList" onChange={chooseFeedYear} defaultValue={savedFeedYear} className="dropdown__selector">
                         <option value="all">all</option>
                         <option value="7" >7</option>
