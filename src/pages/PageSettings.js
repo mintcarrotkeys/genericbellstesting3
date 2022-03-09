@@ -4,7 +4,7 @@ import {passStr, saveStr, passItem, saveItem} from "../version";
 import { ReactComponent as Logo } from "../assets/favicon3.svg";
 
 /** TODO: PREFLIGHT: version number **/
-let appVersion = "1.5.0.4";
+let appVersion = "1.5.0.5";
 
 export default function PageSettings(props) {
 
@@ -325,7 +325,9 @@ export default function PageSettings(props) {
                     src/assets/nav-icons.js contains icons obtained from Bootstrap under the MIT license.
                     Copyright (c) 2019-2021 The Bootstrap Authors for those icons.
                     <br /><br />
-                    See source code on Github for more details. (link above)
+                    See source code on Github for more details.
+                    <br />
+                    <a href="https://github.com/mintcarrotkeys/generic-bells">https://github.com/mintcarrotkeys/generic-bells</a>
                     <br /><br />
                     <b>
                         The Generic Bells logo, which is used within the app and as a favicon, is:<br />
