@@ -1,18 +1,19 @@
+import {passItem, saveItem} from "./version";
+
 //TODO: PREFLIGHT: server data
 
-// const siteURL = encodeURIComponent('https://genericbells.pages.dev');
-// const useAppId = "genericbells10";
-// const serverURL = "https://forward.genericbells.workers.dev/";
-// const tokenServerURL = "https://refresh.genericbells.workers.dev";
-import {passItem, saveItem} from "./version";
+const siteURL = encodeURIComponent('https://genericbells.pages.dev');
+const useAppId = "genericbells10";
+const serverURL = "https://forward.genericbells.workers.dev/";
+const tokenServerURL = "https://refresh.genericbells.workers.dev";
 
 const refreshValidity = 90 * 24 * 60 * 60 * 1000 - 10000;
 const tokenValidity = 60 * 60 * 1000 - 10000;
 
-const siteURL = encodeURIComponent('https://genericbellstesting3.pages.dev');
-const useAppId = "genericbellstesting3";
-const serverURL = "https://forward2.genericbells.workers.dev/";
-const tokenServerURL = "https://refresh2.genericbells.workers.dev";
+// const siteURL = encodeURIComponent('https://genericbellstesting3.pages.dev');
+// const useAppId = "genericbellstesting3";
+// const serverURL = "https://forward2.genericbells.workers.dev/";
+// const tokenServerURL = "https://refresh2.genericbells.workers.dev";
 
 export function getWeekNum(date, mode='millis') {
     let dateVal;
