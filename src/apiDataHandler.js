@@ -179,10 +179,8 @@ export function apiDataHandler(apiData) {
                             displayRoom = variation.roomTo;
                         }
 
-                        if (variation.hasOwnProperty("casualSurname")) {
-                            if (variation.casualSurname !== null && variation.casualSurname !== "") {
-                                displayTeacher = variation.casualSurname;
-                            }
+                        if (variation.hasOwnProperty("casualSurname") && variation.casualSurname !== null && variation.casualSurname !== "") {
+                            displayTeacher = variation.casualSurname;
                         }
                         else if (variation.hasOwnProperty("casual")) {
                             const casualName = variation.casual;
