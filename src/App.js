@@ -131,10 +131,10 @@ function App() {
             else if (storedData.hasOwnProperty("tt") && storedData.tt.hasOwnProperty('subjects')) {
                 let synth = synthDTT(storedData);
                 if (synth) {
-                    output = {...storedData, ...{dtt: synth, dayName: synth.dayName, feeds: {}, dataState: ""}};
+                    output = {...storedData, ...{dtt: synth, dayName: synth.dayName, feeds: {}, dataState: "loading"}};
                 }
                 else {
-                    output = {...storedData, ...{dtt: {}, feeds: {}, dataState: ""}};
+                    output = {...storedData, ...{dtt: {}, feeds: {}, dataState: "loading"}};
                 }
             }
         }
@@ -235,10 +235,10 @@ function App() {
         }
     }
 
-    let pageBells = (<PageBells dayName={data.dayName} data={data.dtt} defaultBells={data.bells} isOffline={(data.dataState==="offline")} />);
+    let pageBells = (<PageBells dayName={data.dayName} data={data.dtt} defaultBells={data.bells} dataState={data.dataState} />);
     let pageBarcode = (<PageBarcode userIdCode={data.userId} />);
     let pageTimetable = (<PageTimetable data={data.tt} sync={data.sync} />);
-    let pageFeeds = (<PageFeeds data={data.feeds} isOffline={(data.dataState==="offline")} />);
+    let pageFeeds = (<PageFeeds data={data.feeds} dataState={data.dataState} />);
     let pageSettings = (<PageSettings />);
 
     let currentPage;
