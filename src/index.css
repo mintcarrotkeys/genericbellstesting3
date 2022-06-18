@@ -1408,6 +1408,11 @@ b, strong {
     font-size: 13px;
 }
 
+.darkBanner {
+    color: #ffffff;
+    background-color: #333333;
+}
+
 .barcodeFontLoader {
     font-size: 3px;
     opacity: 0;

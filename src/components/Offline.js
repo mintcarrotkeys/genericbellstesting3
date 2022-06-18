@@ -9,7 +9,7 @@ export default function Offline(props) {
     }
 
     return(
-        <div className="noConnection group" onClick={reloadPage}>
+        <div className="noConnection darkBanner group" onClick={reloadPage}>
             {noConnectionIcon}
             <div>
                 Failed to update data. Click this to reload.
