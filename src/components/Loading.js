@@ -6,7 +6,7 @@ export default function Loading(props) {
 
 
     return(
-        <div className="noConnection group">
+        <div className="noConnection loadingGroup group">
             {loadingIcon}
             <div>
                 Checking for new data ...

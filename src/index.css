@@ -1400,12 +1400,31 @@ b, strong {
     padding: 0 5px;
 }
 
+.loadingIcon {
+    width: 18px;
+    height: 18px;
+    flex: 0 0 18px;
+    padding: 0 5px;
+
+}
+
+.askLogin__icon {
+    width: 20px;
+    height: 20px;
+    flex: 0 1 20px;
+    padding-right: 5px;
+}
+
 .noConnection {
     display: flex;
     flex-wrap: nowrap;
     justify-content: center;
     align-items: center;
     font-size: 13px;
+}
+
+.loadingGroup {
+    min-height: 25px;
 }
 
 .darkBanner {
