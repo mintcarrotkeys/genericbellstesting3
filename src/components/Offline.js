@@ -13,7 +13,6 @@ export default function Offline(props) {
             {noConnectionIcon}
             <div>
                 Failed to update data. Click this to reload.
-                The last saved version is shown.
             </div>
         </div>
     )
