@@ -1,3 +1,20 @@
+/*@font-face {*/
+/*    font-family: 'Barlow';*/
+/*    font-weight: 400;*/
+/*    src: local('Barlow'), url(./fonts/Barlow-Regular.woff) format('woff');*/
+/*}*/
+/*@font-face {*/
+/*    font-family: 'Barlow';*/
+/*    font-weight: 300;*/
+/*    src: local('Barlow'), url(./fonts/Barlow-Regular.woff) format('woff');*/
+/*}*/
+@font-face {
+    font-family: 'Libre Barcode 128';
+    font-weight: 400;
+    src: local('Libre Barcode 128'), url(./fonts/LibreBarcode128-Regular.ttf) format('truetype');
+}
+
+
 
 :root {
     --background: #eeeeee;
