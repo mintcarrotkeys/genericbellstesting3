@@ -3,6 +3,7 @@ import {passItem, saveItem} from "../version";
 import FeedItem from "../components/FeedItem";
 import Offline from "../components/Offline";
 import Loading from "../components/Loading";
+import TryDarkMode from "../components/TryDarkMode";
 
 
 export default function PageFeeds(props) {
@@ -108,6 +109,7 @@ export default function PageFeeds(props) {
             <div className="feeds__container ">
                 {feedScroll}
             </div>
+            <TryDarkMode />
         </div>
     );
 
