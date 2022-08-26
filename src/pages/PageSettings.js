@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import ClassInfo from "../components/ClassInfo";
 import {passStr, saveStr, passItem, saveItem} from "../version";
 import { ReactComponent as Logo } from "../assets/favicon3.svg";
+import {swapTheme} from "../themeManager";
+import TryDarkMode from "../components/TryDarkMode";
 
 /** TODO: PREFLIGHT: version number **/
-let appVersion = "1.5.5";
+let appVersion = "1.5.6";
 
 export default function PageSettings(props) {
 
@@ -112,6 +114,7 @@ export default function PageSettings(props) {
                     <Logo  />
                 </div>
             </div>
+            <TryDarkMode />
             <div className="group">
                 <h2 className="settings">Customise colours & names</h2>
                 <p className="settings">
@@ -136,7 +139,7 @@ export default function PageSettings(props) {
                         expand all
                     </div>
                 </div>
-                <div className={"period page__bells__row " + (cardsExpanded ? "period--maximised" : "period--minimised")} onClick={() => handleCardsToggle(!cardsExpanded)}>
+                <div className={"settings__example__toggle period page__bells__row " + (cardsExpanded ? "period--maximised" : "period--minimised")} onClick={() => handleCardsToggle(!cardsExpanded)}>
                     <div className="period__top">
                         <div className="period__icon" style={{
                             backgroundColor: '#d0d0d0',
@@ -171,7 +174,7 @@ export default function PageSettings(props) {
                     </div>
                 </div>
                 <div
-                    className="feedItem"
+                    className="settings__example__toggle feedItem"
                     onClick={() => handleFeedsToggle(!feedsExpanded)}
                 >
                     <h2 className="feedItem__title">Click me</h2>

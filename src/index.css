@@ -68,6 +68,7 @@
     --button-back: #dddddd;
     --input-focus: #95c059;
     --link-colour: #61B0B5;
+    --shadow-length-1-2: 2px;
 }
 
 
@@ -413,7 +414,7 @@ a {
 
 .period {
     background-color: var(--card);
-    box-shadow: 0 2px 4px var(--glow);
+    box-shadow: 0 var(--shadow-length-1-2) 4px var(--glow3);
     font-weight: 400;
     font-size: 20px;
     border-radius: 5px;
@@ -607,7 +608,7 @@ a {
     margin: 10px;
     font-size: 15px;
     font-family: inherit;
-    border: solid 1px var(--button-front);
+    border: solid 1px var(--button-back);
     width: fit-content;
 }
 
@@ -676,7 +677,7 @@ a {
 
 .savedBarcode.savedBarcode--selected {
     padding: 3px;
-    border: solid 2px var(--ui-green);
+    border: solid 2px var(--input-focus);
 }
 
 .savedBarcode__code {
@@ -853,6 +854,10 @@ a {
     color: inherit;
     width: 15px;
     height: 15px;
+}
+
+.settings__example__toggle {
+    margin: 5px;
 }
 
 .group {
@@ -1356,7 +1361,7 @@ a {
     border: none;
     font-size: 15px;
     font-family: inherit;
-    margin: 10px;
+    margin: 10px 5px;
     width: fit-content;
 }
 
@@ -1514,3 +1519,20 @@ b, strong {
     min-width: 25px;
     min-height: 25px;
 }
+
+.theme_switch_banner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.small__button {
+    margin: 0 0 0 0;
+    padding: 5px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+

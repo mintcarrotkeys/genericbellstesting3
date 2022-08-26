@@ -5,6 +5,7 @@ import TopBar from "../components/TopBar"
 import {apiDataHandler} from "../apiDataHandler";
 import Offline from "../components/Offline";
 import Loading from "../components/Loading";
+import TryDarkMode from "../components/TryDarkMode";
 
 
 
@@ -93,6 +94,7 @@ export default function PageBells(props) {
             {props.dataState==='loading' ? <Loading /> : ""}
             <TopBar dayName={props.dayName} data={apiData} date={props.data.date} />
             {outputRows}
+            <TryDarkMode />
             <div className="barcodeFontLoader barcodeFontLoader-0">bc</div>
             <div className="barcodeFontLoader barcodeFontLoader-1">bl3</div>
             <div className="barcodeFontLoader barcodeFontLoader-2">bl4</div>
