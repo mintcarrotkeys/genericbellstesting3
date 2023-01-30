@@ -20,6 +20,10 @@ export default function ClassInfo(props) {
     const [data, setData] = useState(props.obj);
     const [colPicker, setColPicker] = useState(false);
 
+    React.useEffect(() => {
+        setData(props.obj);
+    }, [props.obj]);
+
     function handleName(e) {
         e.preventDefault();
         props.reportInput(data.refId, 'displayName', e.target.value);

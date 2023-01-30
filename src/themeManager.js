@@ -1,4 +1,4 @@
-import {passStr, saveStr} from "./version";
+import {passItem, passStr, saveItem, saveStr} from "./version";
 
 
 const lightVariables = {
@@ -28,7 +28,7 @@ const lightVariables = {
     '--input-focus': '#333333',
     '--link-colour': '#0D4C73',
     '--shadow-length-1-2': '1px'
-}
+};
 
 const darkVariables = {
     '--nav-background': '#222527',
@@ -59,6 +59,43 @@ const darkVariables = {
     '--shadow-length-1-2': '2px'
 };
 
+export const darkColours = [
+    {hex: "#95C059", isDark: false},
+    {hex: "#61B0B5", isDark: false},
+    {hex: "#E8BD31", isDark: false},
+    {hex: "#EBADB9", isDark: false},
+    {hex: "#2975A3", isDark: true},
+    {hex: "#CD4B37", isDark: true},
+    {hex: "#8E58A7", isDark: true},
+    {hex: "#3E8131", isDark: true},
+    {hex: "#B9467F", isDark: true},
+    {hex: "#BEB8E0", isDark: false},
+    {hex: "#C1895C", isDark: false},
+    {hex: "#DF8D20", isDark: false},
+    {hex: "#A0A0A0", isDark: true},
+    {hex: "#E5E5E5", isDark: false}
+];
+
+export const lightColours = [
+    {hex: "#97CB4D", isDark: false},
+    {hex: "#57BBC1", isDark: false},
+    {hex: "#F4C325", isDark: false},
+    {hex: "#F0A8B6", isDark: false},
+    {hex: "#0D4C73", isDark: true},
+    {hex: "#A51221", isDark: true},
+    {hex: "#582E6B", isDark: true},
+    {hex: "#28631D", isDark: true},
+    {hex: "#9E2E66", isDark: true},
+    {hex: "#D5B5E6", isDark: false},
+    {hex: "#C18A5C", isDark: false},
+    {hex: "#F49B26", isDark: false},
+    {hex: "#333333", isDark: true},
+    {hex: "#CCCCCC", isDark: false}
+];
+
+
+
+
 export function swapTheme() {
     let currentTheme = passStr('isDarkMode');
     if (currentTheme) {
@@ -70,12 +107,9 @@ export function swapTheme() {
 }
 
 export function setTheme(input) {
-    let isDark = false;
+    let isDark = (input === 'dark');
     let source;
     let root = document.documentElement;
-    if (input === 'dark') {
-        isDark = true;
-    }
     if (isDark) {
         source = darkVariables;
     }
@@ -86,6 +120,28 @@ export function setTheme(input) {
         root.style.setProperty(prop, source[prop]);
     }
     saveStr("isDarkMode", isDark);
+
+    let settings = passItem('displaySettings');
+    if (settings !== null) {
+        for (const subjectId in settings) {
+            let colorPosition = -1;
+            if (input === 'dark') {
+                colorPosition = lightColours.findIndex(
+                    (element) => element.hex === settings[subjectId].colour.hex);
+                if (colorPosition >= 0) {
+                    settings[subjectId].colour = {...darkColours[colorPosition]};
+                }
+            }
+            else if (input === 'light') {
+                colorPosition = darkColours.findIndex(
+                    (element) => element.hex === settings[subjectId].colour.hex);
+                if (colorPosition >= 0) {
+                    settings[subjectId].colour = {...lightColours[colorPosition]};
+                }
+            }
+        }
+    }
+    saveItem('displaySettings', {...settings});
 }
 
 export function checkTheme() {

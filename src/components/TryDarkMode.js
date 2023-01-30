@@ -2,14 +2,20 @@ import React, {useState} from "react";
 import {swapTheme} from "../themeManager";
 import {passStr} from "../version";
 import {theme} from "../assets/nav-icons";
+import {dark_light_triangle} from "../assets/mui_icons";
 
 
 export default function TryDarkMode(props) {
+    /***
+     props.updateTheme()
+
+     */
 
     const [isDark, setIsDark] = useState(passStr('isDarkMode'));
 
     function changeTheme() {
-        swapTheme(false);
+        swapTheme();
+        props.updateTheme();
         setIsDark(!isDark);
     }
 
@@ -23,9 +29,15 @@ export default function TryDarkMode(props) {
 
     let out = (
         <div className="group" style={{width: "fit-content", margin: "10px auto"}}>
-            <div className="theme_switch_banner" >
-                <button className="small__button settings button" onClick={changeTheme}>{buttonIcon}</button>
-                <h5 style={{margin: "0px 5px"}}>try <b>dark mode</b> - our colour palette beautifully remastered.</h5>
+            <div className="theme_switch_banner" onClick={changeTheme}>
+                <button className="small__button settings button" >{buttonIcon}</button>
+                <h4 className="settings swap-theme-text">
+                    dark mode
+                </h4>
+                {dark_light_triangle}
+                <h4 className="settings swap-theme-text">
+                    light mode
+                </h4>
             </div>
         </div>
     )

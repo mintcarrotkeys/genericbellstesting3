@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
-import {colourPack} from "../assets/colours";
+import {passStr} from "../version";
+import {darkColours, lightColours} from "../themeManager";
 
 export default function ColourPicker(props) {
 
     const [current, setCurrent] = useState(props.current.hex);
+
+    React.useEffect(() => {
+        setCurrent(props.current.hex);
+    }, [props.current]);
 
     /**
      *
@@ -46,6 +51,15 @@ export default function ColourPicker(props) {
         }
     }
      **/
+
+    let colourPack;
+    let currentTheme = passStr('isDarkMode');
+    if (currentTheme) {
+        colourPack = [...darkColours];
+    }
+    else {
+        colourPack = [...lightColours];
+    }
 
     function handleClick(e) {
         props.reportCol(colourPack[Number(e.target.id.substring(5, 20))]);

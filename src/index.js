@@ -9,8 +9,8 @@ import {checkTheme, swapTheme} from "./themeManager";
 // TODO: PREFLIGHT: remove testing data
 
 // let TESTDATA = ;
-
-
+//
+//
 // saveItem('storedData', TESTDATA);
 
 checkTheme();

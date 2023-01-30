@@ -1536,3 +1536,11 @@ b, strong {
     align-items: center;
 }
 
+.swap-theme-icon {
+    color: var(--text2);
+}
+
+.swap-theme-text {
+    padding-bottom: 1px;
+}
+
