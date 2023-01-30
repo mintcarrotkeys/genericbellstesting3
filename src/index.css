@@ -377,7 +377,6 @@ a {
     }
 
     .savedBarcode:hover {
-        padding: 3px;
         border: solid 2px var(--text2);
     }
 }
@@ -629,8 +628,8 @@ a {
     white-space: pre;
 }
 
-.saveBarcodeTool {
-    margin-bottom: 10px;
+.saveBarcodeBoxes {
+    margin: 20px 0px;
     padding: 5px;
 }
 
@@ -673,10 +672,12 @@ a {
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
+    box-shadow: none !important;
+    padding: 3px !important;
+    border: solid 2px var(--card);
 }
 
 .savedBarcode.savedBarcode--selected {
-    padding: 3px;
     border: solid 2px var(--input-focus);
 }
 
