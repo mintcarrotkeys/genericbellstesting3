@@ -218,7 +218,7 @@ export default function PageBarcode(props) {
                     {savedBarcodeList}
                 </div>
                 <div className="saveBarcodeBoxes">
-                    <h3 style={{margin: "0px"}}>Save a barcode</h3>
+                    <h3>Save a barcode</h3>
                     <div id="saveBarcodeForm__code">
                         <input
                             type="text"
